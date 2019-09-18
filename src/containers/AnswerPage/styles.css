@@ -1,0 +1,296 @@
+
+
+.navbar{
+  background-color: #ff4d63;
+}
+.navbar .row{
+  margin: 0px 0px 0px -10px;
+}
+.nav-caption{
+  font-weight: 400;
+    font-size: 25px;
+    line-height: 18px;
+    margin-left: 5px;
+}
+.nav-title{
+  text-align: right;
+}
+.nav-hexa h3 {
+  text-align: center;
+  
+}
+.nav-title h2, .nav-title h3 {
+  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+span, a, h1, h2, h3, h4, h5, h6 {
+  color: white;
+}
+
+.hexagon_questions{
+  margin-top: 5px;
+  display: grid;
+}
+.hexagon{
+  margin: 1px;
+}
+
+.hexagon_viewed {
+  position: relative;
+  width: 15px; 
+  height: 8.66px;
+  background-color: #ffffff;
+  margin: 4.33px 0;
+}
+
+.hexagon_viewed:before,
+.hexagon_viewed:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 7.5px solid transparent;
+  border-right: 7.5px solid transparent;
+}
+
+.hexagon_viewed:before {
+  bottom: 100%;
+  border-bottom: 4.33px solid #ffffff;
+}
+
+.hexagon_viewed:after {
+  top: 100%;
+  width: 0;
+  border-top: 4.33px solid #ffffff;
+}
+
+
+.hexagon_selected {
+  position: relative;
+  width: 15px; 
+  height: 8.66px;
+  background-color: #ffffff;
+  margin: 4.33px 0;
+  border-left: solid 2px #ff4d63;
+  border-right: solid 2px #ff4d63;
+}
+
+.hexagon_selected:before,
+.hexagon_selected:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 10.61px;
+  height: 10.61px;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background-color: inherit;
+  left: 0.1967px;
+}
+
+.hexagon_selected:before {
+  top: -5.3033px;
+  border-top: solid 2.8284px #ff4d63;
+  border-right: solid 2.8284px #ff4d63;
+}
+
+.hexagon_selected:after {
+  bottom: -5.3033px;
+  border-bottom: solid 2.8284px #ff4d63;
+  border-left: solid 2.8284px #ff4d63;
+}
+
+
+@supports (display: grid) {
+
+		.hexagon_questions {
+			max-width: 50rem;
+      grid-template-columns: repeat(12, 9px);
+      grid-template-rows: 16px;
+      
+		}
+		.hexagon:nth-child(9n+1) {grid-column: 1}
+		.hexagon:nth-child(9n+2) {grid-column: 3}
+		.hexagon:nth-child(9n+3) {grid-column: 5}
+		.hexagon:nth-child(9n+4) {grid-column: 7}
+		.hexagon:nth-child(9n+5) {grid-column: 9}
+		.hexagon:nth-child(9n+6) {grid-column: 11}
+		.hexagon:nth-child(9n+7) {grid-column: 2}
+    .hexagon:nth-child(9n+8) {grid-column: 4}
+		.hexagon:nth-child(9n+9) {grid-column: 6}
+		.hexagon:nth-child(9n+10) {grid-column: 8}    
+		.hexagon:nth-child(9n+0) {grid-column: 10}
+	
+}
+.question-stage{
+  min-height: 300px;
+  background-color: white;
+  margin-top: 20px;
+}
+.lead{
+  margin-top: 20px;
+  font-size: 20px;
+  color: #35092c;
+  font-weight: 400;
+    font-style: normal;
+    max-width: 800px;
+}
+.question-img{
+  max-width: 300px;
+  max-height: 200px;
+}
+.row{
+  margin: 0px;
+}
+.button-stage{
+  margin-top: 10px;
+}
+.answer-button{
+  border: 3px solid transparent;
+    border-radius: 3px;
+    box-shadow: 0 0 13px 0 rgba(0,0,0,.3);
+    outline: 0;
+    background: #fff;
+    line-height: 20px;
+    min-height: 74px;
+    font-size: 18px;
+    width: 100%;
+    margin: 10px;
+    max-width: 310px;
+}
+.answer-button:hover{
+  box-shadow: 0 0 13px 0 #ff4d63;
+}
+
+
+/* Responsive */
+@media (max-width: 767px){
+  body h3 {
+    font-size: 16px;
+  }
+}
+
+
+/* loading-spinner */
+/* Absolute Center Spinner */
+.loading-spinner {
+	position: fixed;
+	z-index: 999;
+	height: 2em;
+	width: 2em;
+	overflow: visible;
+	margin: auto;
+	top: 0;
+	left: 50px;
+	bottom: 0;
+	right: 0;
+  }
+  
+  /* Transparent Overlay */
+  .loading-spinner:before {
+	content: '';
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+  }
+  
+  /* :not(:required) hides these rules from IE9 and below */
+  .loading-spinner:not(:required) {
+	/* hide "loading-spinner..." text */
+	font: 0/0 a;
+	color: transparent;
+	text-shadow: none;
+	background-color: white;
+	border: 0;
+  }
+  
+  .loading-spinner:not(:required):after {
+	content: '';
+	display: block;
+	font-size: 10px;
+	width: 1em;
+	height: 1em;
+	margin-top: -0.5em;
+	-webkit-animation: spinner 1500ms infinite linear;
+	-moz-animation: spinner 1500ms infinite linear;
+	-ms-animation: spinner 1500ms infinite linear;
+	-o-animation: spinner 1500ms infinite linear;
+	animation: spinner 1500ms infinite linear;
+	border-radius: 0.5em;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+	box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+  }
+
+    /* Animation */
+  
+  @-webkit-keyframes spinner {
+	0% {
+	  -webkit-transform: rotate(0deg);
+	  -moz-transform: rotate(0deg);
+	  -ms-transform: rotate(0deg);
+	  -o-transform: rotate(0deg);
+	  transform: rotate(0deg);
+	}
+	100% {
+	  -webkit-transform: rotate(360deg);
+	  -moz-transform: rotate(360deg);
+	  -ms-transform: rotate(360deg);
+	  -o-transform: rotate(360deg);
+	  transform: rotate(360deg);
+	}
+  }
+  @-moz-keyframes spinner {
+	0% {
+	  -webkit-transform: rotate(0deg);
+	  -moz-transform: rotate(0deg);
+	  -ms-transform: rotate(0deg);
+	  -o-transform: rotate(0deg);
+	  transform: rotate(0deg);
+	}
+	100% {
+	  -webkit-transform: rotate(360deg);
+	  -moz-transform: rotate(360deg);
+	  -ms-transform: rotate(360deg);
+	  -o-transform: rotate(360deg);
+	  transform: rotate(360deg);
+	}
+  }
+  @-o-keyframes spinner {
+	0% {
+	  -webkit-transform: rotate(0deg);
+	  -moz-transform: rotate(0deg);
+	  -ms-transform: rotate(0deg);
+	  -o-transform: rotate(0deg);
+	  transform: rotate(0deg);
+	}
+	100% {
+	  -webkit-transform: rotate(360deg);
+	  -moz-transform: rotate(360deg);
+	  -ms-transform: rotate(360deg);
+	  -o-transform: rotate(360deg);
+	  transform: rotate(360deg);
+	}
+  }
+  @keyframes spinner {
+	0% {
+	  -webkit-transform: rotate(0deg);
+	  -moz-transform: rotate(0deg);
+	  -ms-transform: rotate(0deg);
+	  -o-transform: rotate(0deg);
+	  transform: rotate(0deg);
+	}
+	100% {
+	  -webkit-transform: rotate(360deg);
+	  -moz-transform: rotate(360deg);
+	  -ms-transform: rotate(360deg);
+	  -o-transform: rotate(360deg);
+	  transform: rotate(360deg);
+	}
+  }
+	
