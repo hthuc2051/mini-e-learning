@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import * as Config from '../../Config';
 export default async function callApi(endpoint, method = "GET", body, callKey) {
     //   const token = localStorage.getItem("USER");
     //   let headers = {}
@@ -14,9 +14,9 @@ export default async function callApi(endpoint, method = "GET", body, callKey) {
     try {
         result = await axios({
             method: method,
-            url: `/api/${endpoint}`,
+            url: `${Config.API_URL}/${endpoint}`,
             data: body,
-            headers: headers
+            // headers: headers
         })
     } catch (err) {
         result = err.response;

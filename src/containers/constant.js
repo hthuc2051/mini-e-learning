@@ -1,0 +1,14 @@
+
+
+//Prefix
+export const PREFIX_LOADING="_LOADING";
+export const PREFIX_OK="_OK";
+export const PREFIX_FAILED="_FAILED";
+export const PREFIX_TIME_OUT="_TIME_OUT";
+
+
+export const FETCH_QUESTIONS = 'FETCH_QUESTIONS';
+export const FETCH_QUESTIONS_OK = 'FETCH_QUESTIONS_OK';
+export const FETCH_QUESTIONS_FAILED = 'FETCH_QUESTIONS_FAILED';
+export const FETCH_QUESTIONS_TIME_OUT = 'FETCH_QUESTIONS_TIME_OUT';
+

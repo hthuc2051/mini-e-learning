@@ -1,11 +1,7 @@
 import { combineReducers } from 'redux';
-import homePage from './HomePage/reducer';
-import userPage from './UserPage/reducer';
-import adminPage from './AdminPage/reducer';
+import answerPage from './AnswerPage/reducer';
 const appReducers = combineReducers({
-    homePage,
-    userPage,
-    adminPage
+    answerPage,
 });
 
 export default appReducers;
