@@ -1,0 +1,94 @@
+﻿{
+    "question_response": [
+      {
+        "id": 1,
+        "content": "The reason that money today is worth more than the same amount of money in the future is because of money's capacity to earn more money. Simply deposit money today into a ______  and it will earn more money for as long as it remains there.",
+        "image_src": "https://cdn.pixabay.com/photo/2017/09/07/08/54/money-2724241__340.jpg",
+        "answers": [
+          {
+            "id": 1,
+            "content": "Hold in the backyard"
+          },
+          {
+            "id": 2,
+            "content": "bank account"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "content": "The reason that money today is worth more than the same amount of money in the future is because of money's capacity to earn more money. Simply deposit money today into a ______  and it will earn more money for as long as it remains there.",
+        "image_src": "https://cdn.pixabay.com/photo/2017/09/07/08/54/money-2724241__340.jpg",
+        "answers": [
+          {
+            "id": 1,
+            "content": "Hold in the backyard"
+          },
+          {
+            "id": 2,
+            "content": "bank account"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "content": "The reason that money today is worth more than the same amount of money in the future is because of money's capacity to earn more money. Simply deposit money today into a ______  and it will earn more money for as long as it remains there.",
+        "image_src": "https://cdn.pixabay.com/photo/2017/09/07/08/54/money-2724241__340.jpg",
+        "answers": [
+          {
+            "id": 1,
+            "content": "Hold in the backyard"
+          },
+          {
+            "id": 2,
+            "content": "bank account"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "content": "The reason that money today is worth more than the same amount of money in the future is because of money's capacity to earn more money. Simply deposit money today into a ______  and it will earn more money for as long as it remains there.",
+        "image_src": "https://cdn.pixabay.com/photo/2017/09/07/08/54/money-2724241__340.jpg",
+        "answers": [
+          {
+            "id": 1,
+            "content": "Hold in the backyard"
+          },
+          {
+            "id": 2,
+            "content": "bank account"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "content": "The reason that money today is worth more than the same amount of money in the future is because of money's capacity to earn more money. Simply deposit money today into a ______  and it will earn more money for as long as it remains there.",
+        "image_src": "https://cdn.pixabay.com/photo/2017/09/07/08/54/money-2724241__340.jpg",
+        "answers": [
+          {
+            "id": 1,
+            "content": "Hold in the backyard"
+          },
+          {
+            "id": 2,
+            "content": "bank account"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "content": "The reason that money today is worth more than the same amount of money in the future is because of money's capacity to earn more money. Simply deposit money today into a ______  and it will earn more money for as long as it remains there.",
+        "image_src": "https://cdn.pixabay.com/photo/2017/09/07/08/54/money-2724241__340.jpg",
+        "answers": [
+          {
+            "id": 1,
+            "content": "Hold in the backyard"
+          },
+          {
+            "id": 2,
+            "content": "bank account"
+          }
+        ]
+      }
+    ]
+  }
