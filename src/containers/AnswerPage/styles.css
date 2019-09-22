@@ -3,6 +3,16 @@
 .navbar{
   background-color: #ff4d63;
 }
+.icon-back, .but-ansPage-close, .answer-button, .hexagon_viewed{
+  cursor: pointer;
+}
+.but-selected{
+ border-color: #106e6e;
+ background-color: #106e6e!important;
+ box-shadow: none;
+ cursor: default;
+ color: white;
+}
 .navbar .row{
   margin: 0px 0px 0px -10px;
 }
@@ -44,7 +54,9 @@ span, a, h1, h2, h3, h4, h5, h6 {
   background-color: #ffffff;
   margin: 4.33px 0;
 }
-
+.hexagon_viewed:hover{
+  opacity: .3;
+}
 .hexagon_viewed:before,
 .hexagon_viewed:after {
   content: "";
@@ -70,10 +82,10 @@ span, a, h1, h2, h3, h4, h5, h6 {
   position: relative;
   width: 15px; 
   height: 8.66px;
-  background-color: #ffffff;
+  background-color: #ff4d63;
   margin: 4.33px 0;
-  border-left: solid 2px #ff4d63;
-  border-right: solid 2px #ff4d63;
+  border-left: solid 2px #ffffff;
+  border-right: solid 2px #ffffff;
 }
 
 .hexagon_selected:before,
@@ -92,15 +104,16 @@ span, a, h1, h2, h3, h4, h5, h6 {
 
 .hexagon_selected:before {
   top: -5.3033px;
-  border-top: solid 2.8284px #ff4d63;
-  border-right: solid 2.8284px #ff4d63;
+  border-top: solid 2.8284px #ffffff;
+  border-right: solid 2.8284px #ffffff;
 }
 
 .hexagon_selected:after {
   bottom: -5.3033px;
-  border-bottom: solid 2.8284px #ff4d63;
-  border-left: solid 2.8284px #ff4d63;
+  border-bottom: solid 2.8284px #ffffff;
+  border-left: solid 2.8284px #ffffff;
 }
+
 
 
 @supports (display: grid) {
@@ -124,6 +137,16 @@ span, a, h1, h2, h3, h4, h5, h6 {
 		.hexagon:nth-child(9n+0) {grid-column: 10}
 	
 }
+
+.but-ansPage-close{
+  display: none;
+}
+
+
+.title{
+  overflow: hidden;
+}
+
 .question-stage{
   min-height: 300px;
   background-color: white;
@@ -144,7 +167,7 @@ span, a, h1, h2, h3, h4, h5, h6 {
 .row{
   margin: 0px;
 }
-.button-stage{
+.answers-stage{
   margin-top: 10px;
 }
 .answer-button{
@@ -164,133 +187,186 @@ span, a, h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 13px 0 #ff4d63;
 }
 
+.button-stage{
+  padding: 15px;
+}
+.btn-pre {
+  background-color: transparent;
+  color: #d4ccc3;
+  border: 2px solid rgb(212, 204, 195);
+}
+.btn-pre:hover{
+  background-color: #d4ccc3;
+color: #fff;
+}
+.btn-next{
+  float: right;
+  background-color: #0dd037;
+  color: #fff;
+  border: 2px solid #fff;
+}
+.btn-next:hover{
+  background-color: #0ede3b;
+}
+.btn-next, .btn-pre{
+  min-height: 50px;
+  max-width: 230px;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 0;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 10px 16px;
+  line-height: 1.33333;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: background-color .3s ease,border-color .3s ease,color .3s ease;
+  text-shadow: none;
+  white-space: nowrap;
+  outline: 0;
+  text-indent: 0;
+  font-style: normal;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  text-transform: capitalize;
+}
+
+#snackbar {
+  visibility: hidden; 
+  width: 260px; 
+  min-height: 250px;
+  margin-left: -125px; 
+  background-color: #0dd037; 
+  color: #fff; 
+  text-align: center; 
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed; 
+  z-index: 1; 
+  right: 0;
+  bottom: 0;
+}
+
+#snackbar.show {
+  visibility: visible; 
+  -webkit-animation: fadein 0.5s;
+  animation: fadein 0.5s ;
+}
+#snackbar_top {
+  visibility: hidden; 
+  width: 100%; 
+  min-height: 80px;
+  background-color: #0dd037; 
+  color: #fff; 
+  text-align: center; 
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed; 
+  z-index: 111; 
+  left: 0;
+  top: 0;
+}
+.close{
+  margin-top: -25px;
+  margin-bottom: -20px;
+  font-size: 2rem;
+
+}
+#snackbar_top.show {
+  visibility: visible; 
+  -webkit-animation: fadein 0.5s;
+  animation: fadein 0.5s ;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+.message-close-hexagon{
+  position: absolute;
+    left: -20px;
+    top: -25px;
+    width: 50px;
+    height: 50px;
+    background-color: #0dd037;
+    border-radius: 50%;
+    transition: background-color .3s ease,border-color .3s ease,color .3s ease;
+}
+.message-close-hexagon:hover{
+  background-color: #0ede3b
+  
+}
+.message-element p {
+  font-size:18px;
+}
+.hex-close-icon{
+  height: 27px;
+  margin-top: 11px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Responsive */
 @media (max-width: 767px){
   body h3 {
-    font-size: 16px;
+    font-size: 16px!important;
+  }
+  .title{
+    display: none!important;
+  }
+  .but-ansPage-close{
+    display: inline-block;
+    text-align: right;
+  }
+  .nav-caption{
+    display: none;
+  }
+  .nav-title{
+    float: right;
+  }
+  .button-stage{
+    margin-top: 70px;
+    padding: 0;
+  }
+  .btn-pre{
+    display: none!important;
+  }
+  .btn-next{
+    max-width: 100%;
+  }
+  #snackbar{
+    display: none;
   }
 }
 
 
-/* loading-spinner */
-/* Absolute Center Spinner */
-.loading-spinner {
-	position: fixed;
-	z-index: 999;
-	height: 2em;
-	width: 2em;
-	overflow: visible;
-	margin: auto;
-	top: 0;
-	left: 50px;
-	bottom: 0;
-	right: 0;
-  }
-  
-  /* Transparent Overlay */
-  .loading-spinner:before {
-	content: '';
-	display: block;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: white;
-  }
-  
-  /* :not(:required) hides these rules from IE9 and below */
-  .loading-spinner:not(:required) {
-	/* hide "loading-spinner..." text */
-	font: 0/0 a;
-	color: transparent;
-	text-shadow: none;
-	background-color: white;
-	border: 0;
-  }
-  
-  .loading-spinner:not(:required):after {
-	content: '';
-	display: block;
-	font-size: 10px;
-	width: 1em;
-	height: 1em;
-	margin-top: -0.5em;
-	-webkit-animation: spinner 1500ms infinite linear;
-	-moz-animation: spinner 1500ms infinite linear;
-	-ms-animation: spinner 1500ms infinite linear;
-	-o-animation: spinner 1500ms infinite linear;
-	animation: spinner 1500ms infinite linear;
-	border-radius: 0.5em;
-	-webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
-	box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
-  }
 
-    /* Animation */
-  
-  @-webkit-keyframes spinner {
-	0% {
-	  -webkit-transform: rotate(0deg);
-	  -moz-transform: rotate(0deg);
-	  -ms-transform: rotate(0deg);
-	  -o-transform: rotate(0deg);
-	  transform: rotate(0deg);
-	}
-	100% {
-	  -webkit-transform: rotate(360deg);
-	  -moz-transform: rotate(360deg);
-	  -ms-transform: rotate(360deg);
-	  -o-transform: rotate(360deg);
-	  transform: rotate(360deg);
-	}
-  }
-  @-moz-keyframes spinner {
-	0% {
-	  -webkit-transform: rotate(0deg);
-	  -moz-transform: rotate(0deg);
-	  -ms-transform: rotate(0deg);
-	  -o-transform: rotate(0deg);
-	  transform: rotate(0deg);
-	}
-	100% {
-	  -webkit-transform: rotate(360deg);
-	  -moz-transform: rotate(360deg);
-	  -ms-transform: rotate(360deg);
-	  -o-transform: rotate(360deg);
-	  transform: rotate(360deg);
-	}
-  }
-  @-o-keyframes spinner {
-	0% {
-	  -webkit-transform: rotate(0deg);
-	  -moz-transform: rotate(0deg);
-	  -ms-transform: rotate(0deg);
-	  -o-transform: rotate(0deg);
-	  transform: rotate(0deg);
-	}
-	100% {
-	  -webkit-transform: rotate(360deg);
-	  -moz-transform: rotate(360deg);
-	  -ms-transform: rotate(360deg);
-	  -o-transform: rotate(360deg);
-	  transform: rotate(360deg);
-	}
-  }
-  @keyframes spinner {
-	0% {
-	  -webkit-transform: rotate(0deg);
-	  -moz-transform: rotate(0deg);
-	  -ms-transform: rotate(0deg);
-	  -o-transform: rotate(0deg);
-	  transform: rotate(0deg);
-	}
-	100% {
-	  -webkit-transform: rotate(360deg);
-	  -moz-transform: rotate(360deg);
-	  -ms-transform: rotate(360deg);
-	  -o-transform: rotate(360deg);
-	  transform: rotate(360deg);
-	}
-  }
+
+
 	
