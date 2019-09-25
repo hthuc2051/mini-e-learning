@@ -1,6 +1,5 @@
 import React from 'react';
-import { AnswerPage } from './pages/index';
-
+import { AnswerPage,CoursePage } from './pages/index';
 
 
 
@@ -10,6 +9,11 @@ const routes = [
         path: '/',
         exact: true,
         main: () => <AnswerPage />
+    },
+    {
+        path: '/course',
+        exact: false,
+        main: () => <CoursePage />
     }
 ];
 
