@@ -58,11 +58,6 @@ class AnswerPageContainer extends Component {
         let result = [];
         let { curQuestion, latestIndex } = this.state;
         console.log('latestIndex' + latestIndex);
-        // if (curQuestion < latestIndex) {
-        //     this.setState({
-        //         curQuestion: latestIndex,
-        //     })
-        // }
         for (let i = 0; i < length; i++) {
             result.push(<div style={i > latestIndex ? { opacity: .5, pointerEvents: 'none', cursor: 'default' } : {}} onClick={this.onChangeQuestion(i)} key={i} className={curQuestion == i ? 'hexagon_selected hexagon' : 'hexagon_viewed hexagon'} />);
         }
