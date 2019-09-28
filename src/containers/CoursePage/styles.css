@@ -36,9 +36,18 @@
     font-weight: bolder;
     background-color: #FF4D63;
     color: white;
-    border-radius: 4px 4px 0px 0px;
+    border-radius: 4px 0px 0px 0px;
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* display:grid; */
+    
   }
+
   
+  /* .nameChapter > div:nth-child(2) {
+    margin-left: auto;
+} */
+
   .titleChapter {
     font-weight: bolder;
     color: grey;
@@ -52,7 +61,8 @@
     visibility: hidden;
   }
   .test {
-      display: block;
+      display: grid;
+      grid-template-columns: 40% 60%;
       border-bottom: 1px solid #CCC;
       color: #666;
       cursor: pointer;
@@ -195,6 +205,7 @@
     color: #FF4D63;
   }
   .text{
+      /* width: 90%; */
       font-size: 24px;
       line-height: 45px;
       text-align: left;
@@ -238,6 +249,60 @@
   }
   
   
+  .hexa{
+    display: grid;
+    grid-template-columns: repeat(20, 20px);
+    background-color: #ff4d63;
+    border-radius: 0px 4px 0px 0px;
+  }
+  
+  .hexa > .hexagon_total:nth-child(20n+1) {
+    grid-column: 20;
+  }
+  .hexa > .hexagon_total:nth-child(20n+2) {
+    grid-column: 19;
+  }
+
+  .hexagon_total {
+    position: relative;
+    width: 15px; 
+    height: 8.66px;
+    background-color: #ff4d63;
+    margin: 4.33px 0;
+    border-left: solid 2px #ffffff;
+    border-right: solid 2px #ffffff;
+    grid-row:1;
+  }
+  
+  .hexagon_total:before,
+  .hexagon_total:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    width: 10.61px;
+    height: 10.61px;
+    -webkit-transform: scaleY(0.5774) rotate(-45deg);
+    -ms-transform: scaleY(0.5774) rotate(-45deg);
+    transform: scaleY(0.5774) rotate(-45deg);
+    background-color: inherit;
+    left: 0.1967px;
+    
+  }
+  
+  .hexagon_total:before {
+    top: -5.3033px;
+    border-top: solid 2.8284px #ffffff;
+    border-right: solid 2.8284px #ffffff;
+    
+  }
+  
+  .hexagon_total:after {
+    bottom: -5.3033px;
+    border-bottom: solid 2.8284px #ffffff;
+    border-left: solid 2.8284px #ffffff;
+    
+  }
+
   /* ----------------------------------------------------------------------- */
   /* #toggle-two:checked ~ .expand {
     max-height: 9999px;
@@ -249,7 +314,7 @@
   } */
   
   
-  
+  /* --------------------Responsive ----------------------------- */
   @media screen and (max-width:1600px)
   {
     /* .article{position: absolute;left: 13.5%;top: 10%; } */
