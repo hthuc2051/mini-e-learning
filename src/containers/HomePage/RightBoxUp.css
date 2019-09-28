@@ -1,0 +1,87 @@
+.rightboxup {
+    width: 100%;
+    height: auto;
+    background-color: #194695;
+    padding: 15px;
+    margin-bottom: 30px;
+    border-radius: 4px;
+    float: left;
+}
+
+.rightboxup-contain {
+    width: 95%;
+    height: auto;
+    color: white;
+    font-size: 15px;
+    float: left;
+}
+
+.rightboxup-contain-title {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    float: left;
+}
+
+.rightboxup-contain-title-text {
+    width: 50%;
+    float: left;
+}
+
+.rightboxup-contain-title-hiddenicon {
+    width: 50px;
+    height: auto;
+    float: left;
+    margin-right: 4%;
+    display: none;
+}
+
+.rightboxup-contain-title-icondiv {
+    width: 50%;
+    height: auto;
+    float: left;
+    text-align: right;
+}
+
+.rightboxup-contain-title-icon {
+    width: 50px;
+    height: auto;
+}
+
+.rightboxup-contain-description {
+    width: 100%;
+    float: left;
+}
+
+.rightboxup-contain-buttondiv {
+    width: 100%;
+    height: 35px;
+    float: left;
+}
+
+.rightboxup-contain-bottom {
+    width: auto;
+    margin: auto;
+    text-align: center
+}
+
+.rightboxup-contain-button {
+    width: auto;
+    padding-right: 15px;
+    padding-bottom: 7px;
+    padding-left: 15px;
+    font-weight: 600;
+    border: 1px solid white;
+    border-radius: 16px;
+    background-color: #194695;
+    color: white;
+    height: 35px;
+}
+
+.rightboxup-contain-button:hover {
+    color: #194695;
+    background-color: white;
+}

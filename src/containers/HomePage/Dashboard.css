@@ -1,0 +1,297 @@
+.dashboard {
+    margin-bottom: 15px;
+}
+
+.contain {
+    width: 100%;
+    height: auto;
+}
+
+.topbox {
+    width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+    background-color: white;
+    padding: 3%;
+    position: relative;
+    float: left;
+}
+
+.topbox-contain {
+    background-color: white;
+    margin: auto;
+    width: 98%;
+    height: 92%;
+    position: relative;
+    float: left;
+}
+
+body {
+    background-color: #eeebe8;
+}
+
+.topbox-contain-title {
+    width: 100%;
+    height: 50px;
+    float: left;
+}
+
+.topbox-contain-title-bigicon {
+    width: 50px;
+    height: 50px;
+    float: left;
+    /*   margin-bottom: 26px; */
+}
+
+.topbox-contain-title-smallicon {
+    width: 50px;
+    height: 50px;
+    float: left;
+}
+
+.topbox-contain-title-text {
+    float: left;
+    width: 50%;
+    height: 50px;
+    margin-left: 5px;
+}
+
+.playlist-title {
+    font-size: 25px;
+    color: #a9a197;
+}
+
+.playlist-subtitle {
+    font-size: 15px;
+    color: #c0b8ae;
+    font-weight: 400;
+}
+
+.topbox-contain-title-button {
+    height: 50px;
+    float: left;
+    padding: 11px;
+    padding-right: 0px !important;
+    margin-left: 15px;
+    width: 37%;
+    text-align: right;
+}
+
+.playlist-button {
+    border: 2px solid #dfd9d2;
+    border-radius: 16px;
+    background-color: white;
+    height: 35px;
+    color: #a9a197;
+    font-weight: 600;
+    font-size: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.playlist-button:hover {
+    background-color: #dfd9d2;
+    color: white;
+}
+
+.playlist-button-icon {
+    height: 18px;
+}
+
+.topbox-contain-description {
+    font-size: 15px;
+    color: #c0b8ae;
+    float: left;
+    margin-top: 15px;
+}
+
+.topbox-contain-boxline {
+    margin-right: -30px;
+    margin-left: -22px;
+    float: left;
+    width: 109%;
+}
+
+.topbox-contain-line {
+    height: 1px;
+}
+
+.topbox-contain-courcemode {
+    width: 100%;
+    height: auto;
+    margin-top: 8px;
+    float: left;
+}
+
+.topbox-contain-courcemode-text {
+    height: 100%;
+    width: 69%;
+    float: left;
+}
+
+.topbox-contain-courcemode-stream {
+    font-size: 15px;
+    color: #ff4d63;
+    font-weight: 600;
+    float: left;
+}
+
+.topbox-contain-courcemode-stream:hover {
+    color: #a52e3b;
+}
+
+.topbox-contain-courcemode-lession {
+    font-size: 20px;
+    line-height: 1.05em;
+    color: #a52e3b;
+    font-weight: 400;
+    float: left;
+}
+
+.topbox-contain-courcemode-button {
+    height: 100%;
+    width: 30%;
+    font-size: 18px;
+    font-weight: 400;
+    float: left;
+    margin-right: 5px
+}
+
+.main {
+    margin-left: 1px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .col-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .menu {
+        position: fixed;
+        bottom: 0px;
+    }
+    .rightboxup-contain-title-hiddenicon {
+        display: block !important;
+    }
+    /* hide div */
+    .rightboxup-contain-title-icondiv, .rightboxup-contain-description, .rightboxdown {
+        display: none;
+    }
+    .rightboxup {
+        margin-bottom: 0px !important;
+        margin-left: -40px;
+        width: 110% !important;
+    }
+    .rightboxup-contain-buttondiv, .rightboxup-contain-title {
+        width: 50% !important;
+    }
+    .rightboxup-contain-buttondiv {
+        margin-top: 10px;
+    }
+    .rightboxup-contain-bottom {
+        text-align: right !important
+    }
+    .bottombox-headerbox {
+        margin-bottom: 150px !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .col-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .menu {
+        position: fixed;
+        bottom: 0px;
+        padding-right: 0px;
+    }
+    .rightboxup-contain-title-hiddenicon {
+        display: block !important;
+    }
+    /* hide div */
+    .rightboxup-contain-title-icondiv, .rightboxup-contain-description, .rightboxdown, .topbox-contain-description, .topbox-contain-title-button, .topbox-contain-boxline, .topbox-contain-courcemode, .mainbox-boxnumber, .mainbox-contain-boxline, .mainbox-contain-hidden, .mainbox-contain-bottom {
+        display: none;
+    }
+    .mainbox-playlist, .mainbox {
+        height: auto !important;
+    }
+    .mainbox {
+        width: 106% !important;
+        float: left !important;
+        margin-bottom: 13px !important;
+        margin-left: -5px !important;
+    }
+    .mainbox-playlist-contain-title-icon {
+        width: 40px !important;
+        height: auto !important;
+        margin-top: 20px !important;
+    }
+    .mainbox-playlist-contain-title-text {
+        width: 82%;
+       
+    }
+    .rightboxup {
+        margin-bottom: 0px !important;
+        margin-left: -15px;
+        width: 110% !important;
+        padding: 0px !important;
+    }
+    .rightboxup-contain-buttondiv, .rightboxup-contain-title {
+        width: 50% !important;
+    }
+    .rightboxup-contain-buttondiv {
+        margin-top: 10px;
+        padding-left: 7px !important;
+        padding-right: 7px !important;
+    }
+    .rightboxup-contain-button {
+        padding-left: 7px !important;
+        padding-right: 7px !important;
+    }
+    .rightboxup-contain-bottom {
+        text-align: right !important
+    }
+    .bottombox-headerbox {
+        margin-bottom: 150px !important;
+    }
+    .rightboxup-contain-title-text {
+        width: 60% !important;
+    }
+    .topbox-contain-title-bigicon {
+        width: 7% !important;
+        height: auto;
+        float: left;
+        position: relative;
+        left: 43px;
+        top: 8px;
+    }
+    .topbox-contain-title-smallicon {
+        width: 100% !important;
+        height: auto;
+    }
+    .topbox-contain-title-text {
+        width: 85% !important;
+        float: left
+    }
+    .topbox-contain-title {
+        text-align: center
+    }
+    .mainbox-playlist {
+        width: 100% !important;
+        padding-right: 0 !important;
+    }
+    .mainbox-playlist-contain{
+        width:90% !important
+    }
+    .topbox {
+        padding-top: 0px !important;
+        margin-left: -25px;
+        width: 113% !important;
+        margin-bottom: 13px;
+    }
+    .mainbox-right-arrow {
+        display: block !important;
+        margin-top: -10px !important;
+    }
+}

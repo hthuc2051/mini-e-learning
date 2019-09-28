@@ -1,0 +1,49 @@
+.rightboxdown {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    color: white;
+    border-radius: 4px;
+    background-color: #4d7aff;
+    float: left;
+}
+
+.rightboxdown-title{
+    width: 100%;
+    height: auto;
+    font-size: 20px;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.rightboxdown-title-text{
+    width: 70%;
+    height: auto;
+    float: left;
+}
+
+.rightboxdown-title-iconbox{
+    width: 30%;
+    height: auto;
+    text-align: right;
+    float: left;
+   }
+
+.rightboxdown-title-icon{
+ width: 57px;
+ height: auto; 
+}
+
+.rightboxdown-text{
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    font-size: 15px;
+    float: left;
+}
+
+.rightboxdown-text-headline{
+ width: 100%;
+ margin-bottom: 3px;
+ font-weight: 600;
+}
