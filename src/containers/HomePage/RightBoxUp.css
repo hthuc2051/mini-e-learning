@@ -79,6 +79,7 @@
     background-color: #194695;
     color: white;
     height: 35px;
+    cursor: pointer;
 }
 
 .rightboxup-contain-button:hover {

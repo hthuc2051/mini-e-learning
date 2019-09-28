@@ -32,6 +32,7 @@ class Dashboard extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       info: nextProps.info,
+      questions: nextProps.questions
     })
   }
 
@@ -42,13 +43,13 @@ class Dashboard extends React.Component {
         <Container >
           <Row>
             <Col md="8" xs="12" className="dashboard">
-            {info[0] ? <TopBox info={info[0]} /> : ''}
-              {questions ? this.RenderMainBoxs() : ''}
+              {info[0] ? <TopBox info={info[0]} /> : ''}
+              {questions ? this.RenderMainBoxs(questions) : ''}
             </Col>
             <Col md="4" xs="12" className="menu">
-            {info[1] ? <RightBoxUp info={info[1]} /> : ''}
-             
-            {info[2] ? <RightBoxDown info={info[2]} /> : ''}
+              {info[1] ? <RightBoxUp info={info[1]} /> : ''}
+
+              {info[2] ? <RightBoxDown info={info[2]} /> : ''}
             </Col>
           </Row>
           {info[3] ? <BottomBox info={info[3]} /> : ''}
@@ -58,9 +59,7 @@ class Dashboard extends React.Component {
     );
   };
 
-  RenderMainBoxs = () => {
-    // return this.state.questions.map(line => <MainBox />);
-    let array = this.props.questions;
+  RenderMainBoxs = (array) => {
     let result = [];
     for (let i = 0; i < array.length; i++) {
       result.push(<MainBox data={this.props.questions[i]} />);

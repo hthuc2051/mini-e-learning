@@ -87,6 +87,7 @@ body {
     font-size: 15px;
     padding-right: 15px;
     padding-left: 15px;
+    cursor: pointer;
 }
 
 .playlist-button:hover {
@@ -134,6 +135,7 @@ body {
     color: #ff4d63;
     font-weight: 600;
     float: left;
+    cursor: pointer;
 }
 
 .topbox-contain-courcemode-stream:hover {
