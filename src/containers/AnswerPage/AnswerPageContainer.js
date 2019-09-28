@@ -16,7 +16,10 @@ class AnswerPageContainer extends Component {
             messages: '',
             curQuestion: 0,
             latestIndex: 2,
-            isCorrect: true,
+            isCorrect: false,
+            isShowHint: false,
+            answerMsg: '',
+            hintClass: null,
         };
     }
 
@@ -29,19 +32,18 @@ class AnswerPageContainer extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let { curQuestion } = this.state;
-        let { isLoading, statusCode, questions } = nextProps;
-
-        this.setState({
-            isLoading: nextProps.isLoading,
-            statusCode: nextProps.statusCode,
-            questions: nextProps.questions,
-        })
-
+        let { lesson } = nextProps;
+        if (lesson && lesson.questions) {
+            this.setState({
+                isLoading: nextProps.isLoading,
+                statusCode: nextProps.statusCode,
+                questions: nextProps.lesson.questions,
+                latestIndex: nextProps.lesson.latestIndex,
+            })
+        }
     }
 
     onChangeQuestion = i => () => {
-        console.log(i);
         // let {curQuestion,latestIndex} = this.state;
         this.setState({
             curQuestion: i,
@@ -67,17 +69,38 @@ class AnswerPageContainer extends Component {
         return result;
     }
     onSelectedAnswer = (id) => {
-        let { curQuestion, latestIndex, isCorrect } = this.state;
-        // if (isCorrect) {
-        //    
-        // }
+        let { isCorrect, curQuestion, questions } = this.state;
+        let question = questions[curQuestion];
+        let hintClass = '';
+        if (question) {
+            let answer = question.answers.find(answer => answer.id === id);
+            if (question.correctId === id) {
+                this.setState({
+                    isCorrect: true,
+                });
+                hintClass = "show hint-true"
+            } else {
+                hintClass = "show hint-false"
+            }
+            this.setState({
+                isShowHint: true,
+                answerMsg: answer ? answer.answerMsg : '',
+                hintClass: hintClass,
+            });
+        }
+
+
     }
     onClickNextQuestion = () => {
         let { curQuestion, latestIndex } = this.state;
         let newIndex = curQuestion + 1;
         this.setState({
             curQuestion: newIndex,
-            latestIndex: (newIndex > latestIndex) ? newIndex : latestIndex
+            latestIndex: (newIndex > latestIndex) ? newIndex : latestIndex,
+            isCorrect: false,
+            isShowHint: false,
+            hintClass: null,
+
         });
     }
     onClickPreQuestion = () => {
@@ -85,22 +108,33 @@ class AnswerPageContainer extends Component {
         if (curQuestion > 0) {
             this.setState({
                 curQuestion: curQuestion - 1,
+                isCorrect: false,
+                isShowHint: false,
+                hintClass: null,
             });
         }
     }
+
+    onCloseHint = () => {
+        this.setState({
+            isShowHint: false,
+            hintClass: null,
+        })
+    }
+
     render() {
-        let { questions, isLoading, curQuestion, isCorrect } = this.state;
+        let { questions, isLoading, curQuestion, isCorrect, isShowHint, answerMsg, hintClass } = this.state;
+
         return (
             <div>
                 {isLoading ? <div className="loading-spinner" ></div> : ''}
-                <div id="snackbar_top" className="show">
+                <div id="snackbar_top" className={hintClass ? hintClass : ''}>
                     <div className="message_text_container">
                         <div className="message-element">
-                            <p>Yes. The buyer's offer can only be compared to today's $5,000 after all future payments are converted to their present values.
-                            </p>
+                            <p>{answerMsg}</p>
                         </div>
                     </div>
-                    <button type="button" className="close" aria-label="Close">
+                    <button onClick={this.onCloseHint} type="button" className="close" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -124,19 +158,18 @@ class AnswerPageContainer extends Component {
                         <img width={28} src="/images/cancel.png" className="but-ansPage-close " alt="Close" />
                     </div>
                 </nav>
-                <AnswerStage onSelectedAnswer={this.onSelectedAnswer} question={questions[curQuestion]} />
+                <AnswerStage isCorrect={isCorrect} onSelectedAnswer={this.onSelectedAnswer} question={questions[curQuestion]} />
                 <div className="button-stage fixed-bottom">
                     <button onClick={this.onClickPreQuestion} style={curQuestion < 1 ? { display: 'none' } : { display: 'inline' }} type="button" className="btn-pre  col-12 col-sm-4">Previous</button>
                     <button onClick={this.onClickNextQuestion} style={!isCorrect ? { display: 'none' } : { display: 'inline' }} type="button" className="btn-next col-12 col-sm-4">Continue</button>
                 </div>
-                <div id="snackbar" className="show">
+                <div onClick={this.onCloseHint} id="snackbar" className={hintClass ? hintClass : ''}>
                     <div className="message_text_container">
                         <div className="message-element">
-                            <p>Yes. The buyer's offer can only be compared to today's $5,000 after all future payments are converted to their present values.
-                            </p>
+                            <p>{answerMsg}</p>
                         </div>
                     </div>
-                    <div className="close-button message-close-hexagon"><img className="hex-close-icon" src="./images/hexagon_close.png"></img></div>
+                    <div className={hintClass ? hintClass + " close-button message-close-hexagon" : ""}><img className="hex-close-icon" src="./images/hexagon_close.png"></img></div>
                 </div>
             </div>
         );
@@ -147,7 +180,7 @@ const mapStateToProps = state => {
         statusCode: state.answerPage.statusCode,
         isLoading: state.answerPage.isLoading,
         messages: state.answerPage.messages,
-        questions: state.answerPage.questions,
+        lesson: state.answerPage.lesson,
     }
 
 }

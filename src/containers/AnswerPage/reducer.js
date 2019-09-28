@@ -1,7 +1,7 @@
 import * as Actions from '../constant';
 import * as Messages from '../messages';
 const initStage = {
-    questions: [],
+    lesson: null,
     isLoading: false,
     statusCode: 500,
     message: '',
@@ -20,7 +20,7 @@ const answerPage = (state = initStage, action) => {
             return Object.assign({}, state, {
                 isLoading: false,
                 statusCode: 200,
-                questions:action.questions,
+                lesson: action.lesson,
             });
         case Actions.FETCH_QUESTIONS_FAILED:
             return Object.assign({}, state, {
@@ -34,7 +34,6 @@ const answerPage = (state = initStage, action) => {
                 statusCode: action.statusCode,
                 message: Messages.MSG_TIMEOUT
             });
-
         // Answer questions
         default:
             return state;

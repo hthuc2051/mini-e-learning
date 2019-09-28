@@ -4,15 +4,15 @@ import * as Constants from '../constant';
 import callApi from '../api/apiCaller';
 
 export const fetchQuestionsOfLesson = async (lessonId, dispatch) => {
-    let res = await callApi(`question_response`); //TODO: Change later
+    let res = await callApi(`lesson_progress`); //TODO: Change later
     if (res != null) {
+        console.log(res.data);
         handleResponse(res, dispatch, Constants.FETCH_QUESTIONS);
     }
 }
 
 const handleResponse = async (res, dispatch, action) => {
     let status = res.status;
-    let messages = '';
     switch (status) {
         case 200:
             await dispatch(Actions.is2xx(200, action + Constants.PREFIX_OK, res.data));

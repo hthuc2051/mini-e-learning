@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './styles.css';
-import progress_badge_incomplete from '../../progress_badge_incomplete.png'
-import progress_badge_in_progress from '../../progress_badge_in_progress.png'
+// import progress_badge_incomplete from '../../progress_badge_incomplete.png'
+// import progress_badge_in_progress from '../../progress_badge_in_progress.png'
 
 class Lesson extends Component {
     renderDescription = (descriptions) => {
@@ -21,7 +21,7 @@ class Lesson extends Component {
         if(state == 0){
             result = <div className="lesson-progress">
                         <div className="lesson-progress-icon">
-                            <img src={progress_badge_incomplete} className="progress-badge-incomplete" />
+                            <img  className="progress-badge-incomplete" />
                         </div>
                         <div className="lesson-progress-incomplete-button">
 
@@ -30,7 +30,7 @@ class Lesson extends Component {
         } else if(state == 1) {
             result = <div className="lesson-progress">
                         <div className="lesson-progress-icon">
-                            <img src={progress_badge_in_progress} className="progress-badge-in-progress" />
+                            <img  className="progress-badge-in-progress" />
                         </div>
                         <div className="lesson-progress-in-progress-button">
 
