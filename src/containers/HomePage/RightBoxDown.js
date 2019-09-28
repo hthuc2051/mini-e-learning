@@ -1,6 +1,6 @@
 import React from 'react';
 import './RightBoxDown.css';
-import image from './brain.svg';
+// import image from './brain.svg';
 class RightBoxDown extends React.Component {
     constructor(props){
         super(props);

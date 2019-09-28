@@ -1,6 +1,5 @@
 import React from 'react';
 import './Mainbox.css';
-import icon from './clock.png';
 import { FaChevronRight } from 'react-icons/fa';
 
 class MainBox extends React.Component {

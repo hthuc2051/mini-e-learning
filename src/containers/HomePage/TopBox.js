@@ -1,7 +1,6 @@
 import React from 'react';
 import './Dashboard.css';
-import logo from './icon.svg';
-import icon from './images.png';
+
 import { Button } from 'reactstrap';
 
 class TopBox extends React.Component {

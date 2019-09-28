@@ -1,6 +1,6 @@
 import React from 'react';
 import './BottomBox.css';
-import image from './cetification.jpg';
+// import image from './cetification.jpg';
 class BottomBox extends React.Component{
 render(){
     let {info} = this.props;

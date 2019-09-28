@@ -1,6 +1,5 @@
 import React from 'react';
 import './RightBoxUp.css';
-import icon from './images.png';
 
 class RightBoxUp extends React.Component {
     render() {
