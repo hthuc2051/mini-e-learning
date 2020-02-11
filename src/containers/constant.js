@@ -19,8 +19,30 @@ export const LOAD_MAINBOX = "LOAD_MAINBOX";
 export const LOAD_MAINBOX_OK = 'LOAD_MAINBOX_OK';
 export const LOAD_MAINBOX_FAILED = 'LOAD_MAINBOX_FAILED';
 export const LOAD_MAINBOX_TIME_OUT = 'LOAD_MAINBOX_TIME_OUT';
+export const LOGIN = 'LOGIN';
+export const LOGIN_ENDPOINT = 'login';
+export const REGISTER = 'REGISTER';
+export const REGISTER_ENDPOINT = 'register';
+export const DASHBOARD = 'DASHBOARD';
+export const DASHBOARD_ENDPOINT = 'loadDashboard';
+
+
 
 export const FETCH_COURSE = 'FETCH_COURSE';
 export const FETCH_COURSE_OK = 'FETCH_COURSE_OK';
 export const FETCH_COURSE_FAILED = 'FETCH_COURSE_FAILED';
 export const FETCH_COURSE_TIME_OUT = 'FETCH_COURSE_TIME_OUT';
+
+export const GET_METHOD = 'GET';
+export const POST_METHOD = 'POST';
+
+// Register
+export const CONFIRM_PASSWORD_NOTMATCH = 'ConfirmPassword not match with password';
+export const EMAIL_EMPTY_MESSAGE = 'Email can not empty';
+export const PASSWORD_EMPTY_MESSAGE = 'Password can not empty';
+export const CONFIRM_PASSWORD_EMPTY_MESSAGE = 'ConfirmPassword can not empty';
+export const REGISTER_SUCCESS_MESSAGE = 'Register sucessfully';
+
+//Homepage
+
+

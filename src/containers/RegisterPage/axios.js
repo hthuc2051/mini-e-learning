@@ -3,26 +3,22 @@ import callApi from '../api/apiCaller';
 import * as Actions from './actions';
 import * as Constants from '../constant';
 
-export const getMainBox = async (dispatch) => {
-    let res = await callApi(`MainBox`); //TODO: Change later
+export const register = async (dispatch, name, password) => {
+    let data = JSON.stringify({username : name,password : password});
+    console.log(data);
+    let res = await callApi(Constants.REGISTER_ENDPOINT,Constants.POST_METHOD,data,Constants.REGISTER); //TODO: Change later
     if (res != null) {
-        handleResponse(res, dispatch, Constants.LOAD_MAINBOX);
-    }
-}
-
-export const loadData = async (dispatch) => {
-    let res = await callApi(Constants.DASHBOARD_ENDPOINT,"GET",null,Constants.DASHBOARD_ENDPOINT); //TODO: Change later
-    if (res != null) {
-        handleResponse(res, dispatch, Constants.DASHBOARD);
+        handleResponse(res, dispatch, Constants.LOGIN);
     }
 }
 
     const handleResponse = async (res, dispatch, action) => {
         let status = res.status;
         let messages = '';
+        console.log(res);
         switch (status) {
             case 200:
-                await dispatch(Actions.is2xx(200, action , Constants.PREFIX_OK, res.data));
+                await dispatch(Actions.is2xx(status,action,res.data));
                 break;
             case 400:
                 // await dispatch(Actions.isNot2xx(400, messages));

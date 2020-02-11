@@ -1,5 +1,5 @@
 import React from 'react';
-import { AnswerPage, CoursePage, HomePage } from './pages/index';
+import { AnswerPage, CoursePage, HomePage,LoginPage,RegisterPage } from './pages/index';
 
 
 
@@ -24,12 +24,17 @@ const routes = [
     {
         path: '/login',
         exact: false,
-        main: () => <AnswerPage />
+        main: () => <LoginPage />
     },
     {
         path: '/',
         exact: true,
         main: () => <HomePage />
+    },
+    {
+        path: '/register',
+        exact: true,
+        main: () => <RegisterPage />
     }
 
 ];
