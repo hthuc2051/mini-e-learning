@@ -14,7 +14,7 @@ class AnswerPage extends Component {
       
         return (
             <div>
-                <AnswerPageContainer/>
+                <AnswerPageContainer  params = {this.props.match.params}/>
             </div>
         );
     }

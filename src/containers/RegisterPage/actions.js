@@ -5,11 +5,11 @@ export const onLoading = (action) => {
         type: action,
     }
 }
-export const is2xx = (statusCode, action, message) => {
+export const is2xx = (statusCode, action, user) => {
     return {
         statusCode: statusCode,
         type: action,
-        message: message,
+        user: user,
     }
 }
 

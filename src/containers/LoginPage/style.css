@@ -55,3 +55,7 @@ and open the template in the editor.
 .container-fluid{
     background-color: white;
 }
+
+.error_message{
+    color: red;
+}

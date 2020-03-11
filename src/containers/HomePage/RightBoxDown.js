@@ -31,7 +31,7 @@ class RightBoxDown extends React.Component {
         let result = [];
         for (let i = 0; i < step.length; i++) {
             result.push(
-                <div className="rightboxdown-text">
+                <div key={step[i].title} className="rightboxdown-text">
                     <div className="rightboxdown-text-headline">{step[i].title}</div>
                     <div className="rightboxdown-text-description">{step[i].description}</div>
                 </div>

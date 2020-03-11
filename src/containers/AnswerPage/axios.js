@@ -1,16 +1,23 @@
-
+import {history} from './../../App';
 import * as Actions from './actions';
 import * as Constants from '../constant';
 import callApi from '../api/apiCaller';
 
 export const fetchQuestionsOfLesson = async (lessonId, dispatch) => {
-    let res = await callApi(`lesson_progress`); //TODO: Change later
+    let res = await callApi(Constants.QUESION_ENDPOINT,Constants.GET_METHOD,lessonId,Constants.QUESION); //TODO: Change later
+    console.log(res);
     if (res != null) {
         console.log(res.data);
         handleResponse(res, dispatch, Constants.FETCH_QUESTIONS);
     }
 }
 
+export const saveLearning = async (userId,courseId,lessonId,status) => {
+    let data = JSON.stringify({userId:userId,courseId : courseId,lessonId : lessonId, status: status});
+    console.log(data);
+    let res = await callApi(Constants.SAVE_LESSON_ENDPOINT,Constants.POST_METHOD,data,Constants.SAVE_LESSON); //TODO: Change later
+   history.push('/home/'+ userId);
+}
 const handleResponse = async (res, dispatch, action) => {
     let status = res.status;
     switch (status) {

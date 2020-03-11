@@ -5,7 +5,7 @@ import { login } from './axios'
 import { Route } from 'react-router-dom';
 import {history} from './../../App'
 import { FaLifeRing } from 'react-icons/fa';
-
+import * as Constant from '../constant';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -16,15 +16,16 @@ class LoginPage extends React.Component {
             username: "",
             password: "",
             isLoading: false,
-            role:"",
+            user:"",
             loginFail:"",
         }
     }
 
     componentWillReceiveProps(nextProps) {
-       if(nextProps.role ==='admin'){
-           history.push("/");
-       }else if(nextProps.role ==='failed'){
+    
+       if(nextProps.user.role ==='user'){
+           history.push("/home/"+ nextProps.user.id);
+       }else if(nextProps.user.role ==='failed'){
        this.setState({
            loginFail:'wrong email or password',
            isLoading:false,
@@ -33,7 +34,6 @@ class LoginPage extends React.Component {
     }
     render() {
         let { isLoading,loginFail } = this.state;
-        console.log(this.state);
         return (
            
             <div className="container-fluid">
@@ -51,7 +51,7 @@ class LoginPage extends React.Component {
                                         <input type="password" id="inputPassword" className="inputBox" placeholder="Password" name="password" onChange={this.handleChange} required />
 
                                         <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" onClick={this.handleSubmit} type="button" name="key" value="Sign In">Sign In</button>
-        {loginFail?<p>{loginFail}</p>:''}
+        {loginFail?<p className="error_message">{loginFail}</p>:''}
                                         <div className="text-center">
                                             <a className="small registerLink" href="/register">Sign Up Here</a></div>
 
@@ -74,15 +74,24 @@ class LoginPage extends React.Component {
     }
 
     handleSubmit() {
+  
         let { username, password } = this.state;
-        this.setState({ isLoading: true,loginFail:'' });
-        this.props.login(username,password);
+        if (username == '') {
+            this.setState({ loginFail: Constant.EMAIL_EMPTY_MESSAGE });
+        }
+        else if (password == '') {
+            this.setState({ loginFail: Constant.PASSWORD_EMPTY_MESSAGE });
+        }else{
+            this.setState({ isLoading: true,loginFail:'' });
+            this.props.login(username,password);
+        }
+      
     }
 }
 const mapStateToProps = state => {
     return {
         isLoading: state.loginPage.isLoading,
-        role : state.loginPage.role
+        user : state.loginPage.user
     }
 
 }

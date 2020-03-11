@@ -404,6 +404,9 @@ color: #fff;
   #snackbar_top{
     display: inline;
   }
+  .nav-back{
+    cursor: pointer;
+  }
 }
 
 

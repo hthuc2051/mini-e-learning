@@ -7,29 +7,24 @@ import { AnswerPage, CoursePage, HomePage,LoginPage,RegisterPage } from './pages
 
 const routes = [
     {
-        path: '/learning',
+        path: '/lesson/:id',
         exact: false,
-        main: () => <AnswerPage />
+        main: AnswerPage
     },
     {
-        path: '/course',
+        path: '/course/:id',
         exact: false,
-        main: () => <CoursePage />
+        main: CoursePage
     },
     {
-        path: '/chapter',
+        path: '/home/:id',
         exact: false,
-        main: () => <AnswerPage />
-    },
-    {
-        path: '/login',
-        exact: false,
-        main: () => <LoginPage />
+        main: HomePage
     },
     {
         path: '/',
         exact: true,
-        main: () => <HomePage />
+        main: () => <LoginPage />
     },
     {
         path: '/register',

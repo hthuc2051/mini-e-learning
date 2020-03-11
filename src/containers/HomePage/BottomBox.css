@@ -19,6 +19,19 @@
     margin-bottom: 30px;
 }
 
+.diamon{
+    bottom: 35px;
+    content: "";
+    background-size: 18px 18px;
+    display: block;
+    position: relative;
+    left: 50%;
+    height: 18px;
+    width: 18px;
+    margin: -7.5px 0 0 -9px;
+    background-image: url("https://quantic.mba/assets/vectors/horizontal_rule_diamond_beige-3a421482.svg");
+}
+
 .bottombox-text{
     text-align: center;
     font-size: 17px;
@@ -35,4 +48,22 @@
 .bottombox-image{
     width:246px;
     height: 190px;
+}
+
+.cetificate{
+    position: relative;
+    margin: 0 auto;
+    width: 246px;
+    height: 190px;
+    background-size: 100%;
+    background-image: url("https://quantic.mba/assets/images/certificate_light_quantic-8dcb4d40.png");
+}
+.trophy{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%,-50%);
+    width: 100px;
+    height: 100px;
 }

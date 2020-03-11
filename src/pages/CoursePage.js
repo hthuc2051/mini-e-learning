@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {CoursePageContainer} from '../containers/index';
-
+import { connect } from 'react-redux';
 class CoursePage extends Component {
     constructor(props) {
         super(props);
@@ -11,13 +11,14 @@ class CoursePage extends Component {
    
 
     render() {
-      
         return (
             <div>
-                <CoursePageContainer/>
+                <CoursePageContainer params = {this.props.match.params}/>
             </div>
         );
     }
+
 }
+
 
 export default CoursePage

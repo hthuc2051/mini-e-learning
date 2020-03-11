@@ -6,8 +6,9 @@ class Chapter extends Component {
 
     renderLessons = (lessons) =>{
         let result = null;
+        console.log(lessons)
         result = lessons.map((lesson,index) =>{
-            return lesson ? <Lesson key={index} lesson={lesson}/> : '';
+            return lesson ? <Lesson key={index} index={index+1} lesson={lesson}/> : '';
         })
         return result;
     }
@@ -22,26 +23,27 @@ class Chapter extends Component {
 
     render() {
         let { chapter,index } = this.props;
+        console.log(chapter);
         return (
 
             <div className="main">
-                <label data-toggle="collapse" data-target={"#toggle-" + index} className="test" aria-expanded="false" aria-controls={"toggle-" + index} >
+                <label data-toggle="collapse" data-target={"#toggle-" + index} className="test" aria-expanded="true" aria-controls={"toggle-" + index} >
                     <div className="nameChapter">
-                        <p className="text">{chapter.name}</p>
+                        <p className="text">Lesson</p>
                         
                     </div>
-                    <div className="hexa">
-                        {this.renderHexagon(chapter.totalLessons)}
-                    </div>
+                    <span className="hexagon-span">
+                        {this.renderHexagon(chapter.length)}
+                    </span>
                 </label>
                 <div className="titleChapter">
-                    <p className="text">{chapter.title}</p>
+                    <p className="text">Powered By Aqualic</p>
                 </div>
-                <div className="collapse " id={"toggle-" + index} >
-                    {chapter.lessons ? this.renderLessons(chapter.lessons):''}
+                <div className="collapse show" id={"toggle-" + index} >
+                    {chapter ? this.renderLessons(chapter):''}
 
                 </div>
-                <label data-toggle="collapse" data-target={"#toggle-" + index} className="demo" aria-expanded="false"
+                <label data-toggle="collapse" data-target={"#toggle-" + index} className="demo" aria-expanded="true"
                     aria-controls={"toggle-" + index}>
                 </label>
                 {/* <div className="progress-complete"> */}

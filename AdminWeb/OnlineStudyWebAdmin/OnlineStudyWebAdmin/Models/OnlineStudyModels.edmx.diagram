@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e34df35d030b4b0f8720afdf56f74dbf" Name="Diagram1">
+        <EntityTypeShape EntityType="dbLearningOnlineSystemModel.Answer" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbLearningOnlineSystemModel.Question" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbLearningOnlineSystemModel.Question_Answer" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbLearningOnlineSystemModel.Question_Lesson" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbLearningOnlineSystemModel.sysdiagram" Width="1.5" PointX="5.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbLearningOnlineSystemModel.tblCours" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbLearningOnlineSystemModel.tblCourses_Lessons" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbLearningOnlineSystemModel.tblLesson" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbLearningOnlineSystemModel.tblUser" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbLearningOnlineSystemModel.User_Lesson_Course" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="dbLearningOnlineSystemModel.FK_Question_Answer_Answer" ManuallyRouted="false" />
+        <AssociationConnector Association="dbLearningOnlineSystemModel.FK_Question_Answer_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="dbLearningOnlineSystemModel.FK_Question_Quiz_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="dbLearningOnlineSystemModel.FK_Question_Lesson_tblLessons" ManuallyRouted="false" />
+        <AssociationConnector Association="dbLearningOnlineSystemModel.FK_Courses_Lesson_tblCourses" ManuallyRouted="false" />
+        <AssociationConnector Association="dbLearningOnlineSystemModel.FK_Courses_Lesson_tblLesson" ManuallyRouted="false" />
+        <AssociationConnector Association="dbLearningOnlineSystemModel.FK_User_Lesson_Course_tblCourses_Lessons" ManuallyRouted="false" />
+        <AssociationConnector Association="dbLearningOnlineSystemModel.FK_User_Lesson_Course_tblUsers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

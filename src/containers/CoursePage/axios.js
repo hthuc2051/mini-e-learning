@@ -4,15 +4,21 @@ import * as Constants from '../constant';
 import callApi from '../api/apiCaller';
 
 export const fetchCourse = async (courseId, dispatch) => {
-    let res = await callApi(`course`); //TODO: Change later
-    if (res != null) {
+    // let res = await callApi(`course`); //TODO: Change later
+    // if (res != null) {
+        let res = 
+        {
+            "status":200,
+            "data" : "hello",
+        };
         handleResponse(res, dispatch, Constants.FETCH_COURSE);
-    }
+    // }
 }
 
 
 const handleResponse = async (res, dispatch, action) => {
     let status = res.status;
+    console.log("AXIOUS");
     let messages = '';
     switch (status) {
         case 200:

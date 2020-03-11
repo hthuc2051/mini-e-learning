@@ -131,6 +131,7 @@ body {
 }
 
 .topbox-contain-courcemode-stream {
+    width: 100%;
     font-size: 15px;
     color: #ff4d63;
     font-weight: 600;

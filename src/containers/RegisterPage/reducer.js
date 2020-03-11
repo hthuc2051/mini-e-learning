@@ -2,7 +2,7 @@ import * as Actions from '../constant';
 import * as Messages from '../messages';
 const initStage = {
     isLoading: false,
-    message:"",
+    user:"",
 };
 
 const registerPage = (state = initStage, action) => {
@@ -13,7 +13,7 @@ const registerPage = (state = initStage, action) => {
         case Actions.LOGIN:
             return Object.assign({}, state, {
                 isLoading: false,
-                message:action.message,
+                user:action.user,
             });
 
         // Answer course

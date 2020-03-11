@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbLearningOnlineSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Answer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="answer1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Question_Answer" Relationship="Self.FK_Question_Answer_Answer" FromRole="Answer" ToRole="Question_Answer" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="question1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="image_src" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Question_Answer" Relationship="Self.FK_Question_Answer_Question" FromRole="Question" ToRole="Question_Answer" />
+    <NavigationProperty Name="Question_Lesson" Relationship="Self.FK_Question_Quiz_Question" FromRole="Question" ToRole="Question_Lesson" />
+  </EntityType>
+  <EntityType Name="Question_Answer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="answerId" Type="Int32" />
+    <Property Name="questionId" Type="Int32" />
+    <Property Name="isCorrect" Type="Boolean" />
+    <NavigationProperty Name="Answer" Relationship="Self.FK_Question_Answer_Answer" FromRole="Question_Answer" ToRole="Answer" />
+    <NavigationProperty Name="Question" Relationship="Self.FK_Question_Answer_Question" FromRole="Question_Answer" ToRole="Question" />
+  </EntityType>
+  <EntityType Name="Question_Lesson">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="questionId" Type="Int32" />
+    <Property Name="lessonId" Type="Int32" />
+    <NavigationProperty Name="Question" Relationship="Self.FK_Question_Quiz_Question" FromRole="Question_Lesson" ToRole="Question" />
+    <NavigationProperty Name="tblLesson" Relationship="Self.FK_Question_Lesson_tblLessons" FromRole="Question_Lesson" ToRole="tblLessons" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblCours">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="active" Type="Boolean" />
+    <Property Name="icon" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblCourses_Lessons" Relationship="Self.FK_Courses_Lesson_tblCourses" FromRole="tblCourses" ToRole="tblCourses_Lessons" />
+  </EntityType>
+  <EntityType Name="tblCourses_Lessons">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="course_id" Type="Int32" Nullable="false" />
+    <Property Name="lesson_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblCours" Relationship="Self.FK_Courses_Lesson_tblCourses" FromRole="tblCourses_Lessons" ToRole="tblCourses" />
+    <NavigationProperty Name="tblLesson" Relationship="Self.FK_Courses_Lesson_tblLesson" FromRole="tblCourses_Lessons" ToRole="tblLessons" />
+    <NavigationProperty Name="User_Lesson_Course" Relationship="Self.FK_User_Lesson_Course_tblCourses_Lessons" FromRole="tblCourses_Lessons" ToRole="User_Lesson_Course" />
+  </EntityType>
+  <EntityType Name="tblLesson">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="video_link" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="active" Type="Boolean" />
+    <NavigationProperty Name="Question_Lesson" Relationship="Self.FK_Question_Lesson_tblLessons" FromRole="tblLessons" ToRole="Question_Lesson" />
+    <NavigationProperty Name="tblCourses_Lessons" Relationship="Self.FK_Courses_Lesson_tblLesson" FromRole="tblLessons" ToRole="tblCourses_Lessons" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="active" Type="Boolean" />
+    <NavigationProperty Name="User_Lesson_Course" Relationship="Self.FK_User_Lesson_Course_tblUsers" FromRole="tblUsers" ToRole="User_Lesson_Course" />
+  </EntityType>
+  <EntityType Name="User_Lesson_Course">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="lesson_course_id" Type="Int32" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblCourses_Lessons" Relationship="Self.FK_User_Lesson_Course_tblCourses_Lessons" FromRole="User_Lesson_Course" ToRole="tblCourses_Lessons" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK_User_Lesson_Course_tblUsers" FromRole="User_Lesson_Course" ToRole="tblUsers" />
+  </EntityType>
+  <Association Name="FK_Question_Answer_Answer">
+    <End Role="Answer" Type="Self.Answer" Multiplicity="0..1" />
+    <End Role="Question_Answer" Type="Self.Question_Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Answer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Question_Answer">
+        <PropertyRef Name="answerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Answer_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+    <End Role="Question_Answer" Type="Self.Question_Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Question_Answer">
+        <PropertyRef Name="questionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Quiz_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+    <End Role="Question_Lesson" Type="Self.Question_Lesson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Question_Lesson">
+        <PropertyRef Name="questionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Lesson_tblLessons">
+    <End Role="tblLessons" Type="Self.tblLesson" Multiplicity="0..1" />
+    <End Role="Question_Lesson" Type="Self.Question_Lesson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblLessons">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Question_Lesson">
+        <PropertyRef Name="lessonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Courses_Lesson_tblCourses">
+    <End Role="tblCourses" Type="Self.tblCours" Multiplicity="1" />
+    <End Role="tblCourses_Lessons" Type="Self.tblCourses_Lessons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCourses">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblCourses_Lessons">
+        <PropertyRef Name="course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Courses_Lesson_tblLesson">
+    <End Role="tblLessons" Type="Self.tblLesson" Multiplicity="1" />
+    <End Role="tblCourses_Lessons" Type="Self.tblCourses_Lessons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblLessons">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblCourses_Lessons">
+        <PropertyRef Name="lesson_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Lesson_Course_tblCourses_Lessons">
+    <End Role="tblCourses_Lessons" Type="Self.tblCourses_Lessons" Multiplicity="0..1" />
+    <End Role="User_Lesson_Course" Type="Self.User_Lesson_Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCourses_Lessons">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User_Lesson_Course">
+        <PropertyRef Name="lesson_course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Lesson_Course_tblUsers">
+    <End Role="tblUsers" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="User_Lesson_Course" Type="Self.User_Lesson_Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User_Lesson_Course">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbLearningOnlineSystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Answers" EntityType="Self.Answer" />
+    <EntitySet Name="Questions" EntityType="Self.Question" />
+    <EntitySet Name="Question_Answer" EntityType="Self.Question_Answer" />
+    <EntitySet Name="Question_Lesson" EntityType="Self.Question_Lesson" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tblCourses" EntityType="Self.tblCours" />
+    <EntitySet Name="tblCourses_Lessons" EntityType="Self.tblCourses_Lessons" />
+    <EntitySet Name="tblLessons" EntityType="Self.tblLesson" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+    <EntitySet Name="User_Lesson_Course" EntityType="Self.User_Lesson_Course" />
+    <AssociationSet Name="FK_Question_Answer_Answer" Association="Self.FK_Question_Answer_Answer">
+      <End Role="Answer" EntitySet="Answers" />
+      <End Role="Question_Answer" EntitySet="Question_Answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Answer_Question" Association="Self.FK_Question_Answer_Question">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="Question_Answer" EntitySet="Question_Answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Quiz_Question" Association="Self.FK_Question_Quiz_Question">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="Question_Lesson" EntitySet="Question_Lesson" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Lesson_tblLessons" Association="Self.FK_Question_Lesson_tblLessons">
+      <End Role="tblLessons" EntitySet="tblLessons" />
+      <End Role="Question_Lesson" EntitySet="Question_Lesson" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Courses_Lesson_tblCourses" Association="Self.FK_Courses_Lesson_tblCourses">
+      <End Role="tblCourses" EntitySet="tblCourses" />
+      <End Role="tblCourses_Lessons" EntitySet="tblCourses_Lessons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Courses_Lesson_tblLesson" Association="Self.FK_Courses_Lesson_tblLesson">
+      <End Role="tblLessons" EntitySet="tblLessons" />
+      <End Role="tblCourses_Lessons" EntitySet="tblCourses_Lessons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Lesson_Course_tblCourses_Lessons" Association="Self.FK_User_Lesson_Course_tblCourses_Lessons">
+      <End Role="tblCourses_Lessons" EntitySet="tblCourses_Lessons" />
+      <End Role="User_Lesson_Course" EntitySet="User_Lesson_Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Lesson_Course_tblUsers" Association="Self.FK_User_Lesson_Course_tblUsers">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="User_Lesson_Course" EntitySet="User_Lesson_Course" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

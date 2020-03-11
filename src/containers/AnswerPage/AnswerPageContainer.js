@@ -4,13 +4,17 @@ import * as Constants from '../constant';
 import './styles.css';
 import { fetchQuestionsOfLesson } from './axios';
 import { onLoading } from './actions';
+import { saveLearning } from './axios';
 import AnswerStage from './AnswerStage';
+
 
 class AnswerPageContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoading: true,
+            lessonId: 0,
+            courseId:0,
             statusCode: 200,
             questions: [],
             messages: '',
@@ -20,25 +24,51 @@ class AnswerPageContainer extends Component {
             isShowHint: false,
             answerMsg: '',
             hintClass: null,
+            lessonName: '',
+            lessonIndex: 0,
+            lessonNumber: 0,
+            userId:0,
         };
     }
 
     componentWillMount() {
+        let params = this.props.params;
         this.props.onLoading();
         this.setState({
             isLoading: true,
+            lessonId: params.id,
         })
-        this.props.fetchQuestions(1);
+        this.props.fetchQuestions(params.id);
     }
 
     componentWillReceiveProps(nextProps) {
+
         let { lesson } = nextProps;
         if (lesson && lesson.questions) {
+            let course = nextProps.course;
+            for (let i = 0; i < course.length; i++) {
+                let lessonsList = course[i].courseLesson;
+                for (let j = 0; j < lessonsList.length; j++) {
+                    let lessons = lessonsList[j];
+                    let lessonID = lessons.id + "";
+                    if (lessonID === this.state.lessonId) {
+                        this.setState({
+                            lessonIndex :j + 1,
+                            lessonNumber: lessonsList.length,
+                            lessonName: lessons.name,
+                            courseId: course[i].id,
+                        });
+                    }
+                }
+
+
+            }
             this.setState({
                 isLoading: nextProps.isLoading,
                 statusCode: nextProps.statusCode,
                 questions: nextProps.lesson.questions,
                 latestIndex: nextProps.lesson.latestIndex,
+                userId: nextProps.userId,
             })
         }
     }
@@ -57,7 +87,6 @@ class AnswerPageContainer extends Component {
     renderHexagon = (length) => {
         let result = [];
         let { curQuestion, latestIndex } = this.state;
-        console.log('latestIndex' + latestIndex);
         for (let i = 0; i < length; i++) {
             result.push(<div style={i > latestIndex ? { opacity: .5, pointerEvents: 'none', cursor: 'default' } : {}} onClick={this.onChangeQuestion(i)} key={i} className={curQuestion == i ? 'hexagon_selected hexagon' : 'hexagon_viewed hexagon'} />);
         }
@@ -87,7 +116,7 @@ class AnswerPageContainer extends Component {
 
     }
     onClickNextQuestion = () => {
-        let { curQuestion, latestIndex } = this.state;
+        let { curQuestion, latestIndex, selectedId } = this.state;
         let newIndex = curQuestion + 1;
         this.setState({
             curQuestion: newIndex,
@@ -97,6 +126,7 @@ class AnswerPageContainer extends Component {
             hintClass: null,
 
         });
+
     }
     onClickPreQuestion = () => {
         let { curQuestion } = this.state;
@@ -117,8 +147,31 @@ class AnswerPageContainer extends Component {
         })
     }
 
+    renderTitle() {
+        let {lessonName,lessonNumber,lessonIndex} = this.state; 
+        return (
+            <div className="nav-title col-2 col-sm-3">
+                <div className="title">
+                    <h2>{lessonName}</h2>
+        <h3>Lesson {lessonIndex} of {lessonNumber}</h3>
+                </div>
+                <img width={28} src="/images/cancel.png" className="but-ansPage-close " alt="Close" />
+            </div>
+        );
+    }
+
+    saveAndExit(){
+        console.log(this.state);
+        let {courseId,lessonId,userId,curQuestion,questions} =this.state;
+        let status = Constants.LEARNING;
+        if(curQuestion === questions.length){
+            status = Constants.LEARNED;
+        }
+        this.props.saveLearningStatus(userId,courseId,lessonId,status);
+    }
+
     render() {
-        let { questions, isLoading, curQuestion, isCorrect, isShowHint, answerMsg, hintClass } = this.state;
+        let { questions, isLoading, curQuestion, isCorrect, isShowHint, answerMsg, hintClass, selectedId } = this.state;
 
         return (
             <div>
@@ -134,9 +187,9 @@ class AnswerPageContainer extends Component {
                     </button>
                 </div>
                 <nav className="navbar d-flex justify-content-between">
-                    <div className="nav-back d-flex align-items-center col-2 col-sm-3" >
+                    <div className="nav-back d-flex align-items-center col-2 col-sm-3" onClick= {(e) => {e.preventDefault();this.saveAndExit()}}>
                         <img className="icon-back" src="/images/left-arrow.png" ></img>
-                        <span className="nav-caption" >EXIT</span>
+                        <span className="nav-caption" >SAVE AND EXIT</span>
                     </div>
                     <div className="justify-content-center nav-hexa col-8 col-sm-6">
                         <div className="hexagon_questions justify-content-center " >
@@ -144,16 +197,10 @@ class AnswerPageContainer extends Component {
                         </div>
                         <h3>Select an answer for each blank</h3>
                     </div>
+                    {this.renderTitle()}
 
-                    <div className="nav-title col-2 col-sm-3">
-                        <div className="title">
-                            <h2>The Time Value of Money</h2>
-                            <h3>Chapter 1 • Lesson 1 of 4</h3>
-                        </div>
-                        <img width={28} src="/images/cancel.png" className="but-ansPage-close " alt="Close" />
-                    </div>
                 </nav>
-                <AnswerStage isCorrect={isCorrect} onSelectedAnswer={this.onSelectedAnswer} question={questions[curQuestion]} />
+                <AnswerStage isCorrect={isCorrect} onSelectedAnswer={this.onSelectedAnswer} question={questions[curQuestion]} selectedId={selectedId} />
                 <div className="button-stage fixed-bottom">
                     <button onClick={this.onClickPreQuestion} style={curQuestion < 1 ? { display: 'none' } : { display: 'inline' }} type="button" className="btn-pre  col-12 col-sm-4">Previous</button>
                     <button onClick={this.onClickNextQuestion} style={!isCorrect ? { display: 'none' } : { display: 'inline' }} type="button" className="btn-next col-12 col-sm-4">Continue</button>
@@ -162,9 +209,10 @@ class AnswerPageContainer extends Component {
                     <div className="message_text_container">
                         <div className="message-element">
                             <p>{answerMsg}</p>
+                            {answerMsg == 'Correct' ? <p>Smart choice</p> : <p>Let try again</p>}
                         </div>
                     </div>
-                    <div className={hintClass ? hintClass + " close-button message-close-hexagon" : ""}><img className="hex-close-icon" src="./images/hexagon_close.png"></img></div>
+                    <div className={hintClass ? hintClass + " close-button message-close-hexagon" : ""}><img className="hex-close-icon" src="https://quantic.mba/assets/images/hexagon_close-d5d50336.png"></img></div>
                 </div>
             </div>
         );
@@ -176,6 +224,8 @@ const mapStateToProps = state => {
         isLoading: state.answerPage.isLoading,
         messages: state.answerPage.messages,
         lesson: state.answerPage.lesson,
+        course: state.dashBoardPage.course,
+       userId: state.loginPage.user.id,
     }
 
 }
@@ -186,6 +236,9 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         fetchQuestions: (lessonId) => {
             fetchQuestionsOfLesson(lessonId, dispatch);
+        },
+        saveLearningStatus: (userId,courseId,lessonID,status) => {
+            saveLearning(userId,courseId,lessonID,status);
         }
     }
 }

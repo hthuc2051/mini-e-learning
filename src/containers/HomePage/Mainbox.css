@@ -124,6 +124,7 @@
 }
 
 .mainbox-number-line {
+    z-index: -1;
     width: 4px;
     height: 200px;
     position: relative;

@@ -17,8 +17,9 @@ class MainBox extends React.Component {
     }
 
     render() {
+        let {id} = this.props;
         return (
-            <div className="mainbox">
+            <div className="mainbox" onClick={(event) =>{this.props.onSave(event,id)}} >
                 {
                     this.props.data.isEnable ? <div className="mainbox-boxnumber">
                         <div className="mainbox-number">{this.props.data.number}</div>
@@ -38,18 +39,18 @@ class MainBox extends React.Component {
                             :
                             <img src={this.props.data.icon} className="mainbox-playlist-contain-title-icon-disable" alt="playlist-icon" />}
                            
-                            <div className="mainbox-playlist-contain-title-text">{this.props.data.title}</div>
+                            <div className="mainbox-playlist-contain-title-text">{this.props.data.name}</div>
                         </div>
                         <div className="mainbox-contain-boxline">
                             <hr className="mainbox-contain-line"></hr>
                         </div>
                         <p className="mainbox-contain-description"> {this.props.data.description}</p>
                         <div className="mainbox-contain-hidden">
-                            <div className="mainbox-contain-hidden-topic">{this.props.data.course}</div>
+                            <div className="mainbox-contain-hidden-topic">Smartly</div>
                         </div>
                         <div className="mainbox-contain-bottom">
                             <p className="mainbox-contain-caption">LESSONS</p>
-                            <div className="mainbox-contain-bignumber">{this.props.data.lesson}</div>
+                            <div className="mainbox-contain-bignumber">{this.props.data.numberLesson}</div>
                         </div>
                     </div>
                     <div className="mainbox-right-arrow">

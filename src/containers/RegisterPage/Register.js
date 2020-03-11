@@ -15,18 +15,19 @@ class RegisterPage extends React.Component {
             password: '',
             confirm_password: '',
             message: '',
+            user:'',
             isLoading: false,
         }
     }
 
     componentWillReceiveProps(nextProps) {
         console.log(nextProps)
-        if (nextProps.message == Constant.REGISTER_SUCCESS_MESSAGE) {
-            console.assert(nextProps.message);
-            history.push("/");
+        if (nextProps.user.message == Constant.REGISTER_SUCCESS_MESSAGE) {
+            console.assert(nextProps.user.message);
+            history.push("/home/"+nextProps.user.id);
         } else {
             this.setState({
-                message: nextProps.message,
+                message: nextProps.user.message,
                 isLoading: nextProps.isLoading
             });
         }
@@ -34,26 +35,29 @@ class RegisterPage extends React.Component {
     render() {
         let { message, isLoading } = this.state;
         return (
-            <div className="signup-form">
-                {isLoading ? <div className="loading-spinner" ></div> : ''}
-                <form>
-                    <h1>Create an Account</h1>
-                    <div className="form-group">
-                        <input type="email" className="form-control input-lg" name="username" placeholder="Email Address" onChange={this.handleChange} required="required" />
-                    </div>
-                    <div className="form-group">
-                        <input type="password" className="form-control input-lg" name="password" placeholder="Password" onChange={this.handleChange} required="required" />
-                    </div>
-                    <div className="form-group">
-                        <input type="password" className="form-control input-lg" name="confirm_password" placeholder="Confirm Password" onChange={this.handleChange} required="required" />
-                        <span className="confirm_not_match">{message}</span>
-                    </div>
-                    <div className="form-group">
-                        <button type="button" className="btn btn-success btn-lg btn-block signup-btn" id="submit" name="key" value="Sign Up" onClick={this.handleSubmit}>Sign Up</button>
-                    </div>
-                    <div className="text-center text-black">Already have an account? <a href="/login">Login here</a></div>
-                </form>
+            <div className="wall-paper">
+                <div className="signup-form">
+                    {isLoading ? <div className="loading-spinner" ></div> : ''}
+                    <form>
+                        <h1>Create an Account</h1>
+                        <div className="form-group">
+                            <input type="email" className="form-control input-lg" name="username" placeholder="Email Address" onChange={this.handleChange} required="required" />
+                        </div>
+                        <div className="form-group">
+                            <input type="password" className="form-control input-lg" name="password" placeholder="Password" onChange={this.handleChange} required="required" />
+                        </div>
+                        <div className="form-group">
+                            <input type="password" className="form-control input-lg" name="confirm_password" placeholder="Confirm Password" onChange={this.handleChange} required="required" />
+                            <span className="confirm_not_match">{message}</span>
+                        </div>
+                        <div className="form-group">
+                            <button type="button" className="btn btn-success btn-lg btn-block signup-btn" id="submit" name="key" value="Sign Up" onClick={this.handleSubmit}>Sign Up</button>
+                        </div>
+                        <div className="text-center text-black">Already have an account? <a href="/">Login here</a></div>
+                    </form>
+                </div>
             </div>
+
         );
     }
     handleChange(event) {
@@ -95,7 +99,7 @@ class RegisterPage extends React.Component {
 const mapStateToProps = state => {
     return {
         isLoading: state.registerPage.isLoading,
-        message: state.registerPage.message
+        user: state.registerPage.user
     }
 
 }

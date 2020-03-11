@@ -25,8 +25,13 @@ export const REGISTER = 'REGISTER';
 export const REGISTER_ENDPOINT = 'register';
 export const DASHBOARD = 'DASHBOARD';
 export const DASHBOARD_ENDPOINT = 'loadDashboard';
-
-
+export const QUESION_ENDPOINT = 'question';
+export const QUESION = 'QUESTION';
+export const SAVE_LESSON_ENDPOINT = 'saveLearning';
+export const SAVE_LESSON = 'SAVEQUESTION';
+//learning status
+export const LEARNED = 'Learned';
+export const LEARNING = 'Learning';
 
 export const FETCH_COURSE = 'FETCH_COURSE';
 export const FETCH_COURSE_OK = 'FETCH_COURSE_OK';

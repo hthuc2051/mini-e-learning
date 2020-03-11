@@ -1,25 +1,50 @@
 //bottombox
-export const USERNAME = "Thien";
-export const DOWNBOX_ICON = "https://smart.ly/assets/vectors/brain_onboarding_messenger-84660100.svg";
-export const DOWNBOX_HELLO =  "Welcome to Smartly,";
-export const STEP  =  [
-    {
-      "id": "1",
-      "title": "Step 1: Complete your application",
-      "description": "it's fast and free to apply."
-    },
-    {
-      "id": "2",
-      "title": "Step 2: Start Learning",
-      "description": "Try out these Bussiness Basic courses. Progress is considered in evaluating your application."
-    },
-    {
-      "id": "3",
-      "title": "Step 3: Get Your Decision",
-      "description": "Decisions are sent on a rolling basis, usually within 2 weeks."
-    }
-  ];
-
-  //topbox
-  export const TOPBOX_ICON = "https://smart.ly/assets/vectors/track_icon-c696c4e1.svg";
-  export const PLAYLIST_TITLE = "Bussiness Basics";
+export const INFO = [
+  {
+    "id": 1,
+    "icon": "https://smart.ly/assets/vectors/track_icon-c696c4e1.svg",
+    "playlist_title": "Bussiness Basics",
+    "playlist_subtitle": "4 COURSE - 4 HOURS - O% COMPLETE",
+    "description": "Start learning with four core course designed to introduce you to the fields of Finance, Accounting, Economics and Statistics.",
+    "stream_title": "FINANCE: TIME VALUE OF MONEY",
+    "lession_title": "NEXT UP: THE TIME VALUE OF MONEY",
+    "sub_icon": "https://quantic.mba/assets/images/mba_icon_quantic-9e4af35a.png",
+     "course": []
+  },
+  {
+    "id": 2,
+    "upbox_tile": "Smartly MBA Program",
+    "upbox_description": "Accepting applications for the next admission cycle now.",
+    "upbox_icon": "https://quantic.mba/assets/images/mba_icon_quantic-9e4af35a.png"
+  },
+  {
+    "id": 3,
+    "user_name": "Thien",
+    "downbox_icon": "https://smart.ly/assets/vectors/brain_onboarding_messenger-84660100.svg",
+    "downbox_hello": "Welcome to Smartly,",
+    "steps": [
+      {
+        "id": "1",
+        "title": "Step 1: Complete your application",
+        "description": "it's fast and free to apply."
+      },
+      {
+        "id": "2",
+        "title": "Step 2: Start Learning",
+        "description": "Try out these Bussiness Basic courses. Progress is considered in evaluating your application."
+      },
+      {
+        "id": "3",
+        "title": "Step 3: Get Your Decision",
+        "description": "Decisions are sent on a rolling basis, usually within 2 weeks."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "bottombox_caption": "COMPLETED COURSES",
+    "bottombox_description": "Complete courses to earn cetificates and downloadable sumaries!",
+    "bottombox_image": "data:image/jpeg;base64,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"
+  },
+ 
+];

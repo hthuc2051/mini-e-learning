@@ -9,10 +9,15 @@ render(){
             <div className="bottombox-header">
                 {info.bottombox_caption}
             </div>
-            <div className="bottombox-completeline"></div>
+            <hr className="bottombox-completeline">
+               
+            </hr>
+            <hr className="diamon"/>
             <div className="bottombox-text">{info.bottombox_description}</div>
             <div className="bottombox-imagediv">
-                <img src={info.bottombox_image} className="bottombox-image"/>
+                <div className="cetificate">
+                    <img src="https://quantic.mba/assets/images/icon_trophy-96e50b0f.png" className="trophy"/>
+                </div>
             </div>
         </div>
     );

@@ -28,6 +28,7 @@ class AnswerStage extends Component {
         }
         return result;
     }
+
     render() {
         let { question, isCorrect } = this.props;
         let className = "row answers-stage d-flex justify-content-center ";
@@ -36,7 +37,7 @@ class AnswerStage extends Component {
             <div  >
                 <div className=" d-flex flex-column align-items-center mx-5 question-stage justify-content-center">
                     {question && question.image_src ? <img className="question-img" src={question.image_src} alt="img-question" /> : ''}
-                    <div className="lead">
+                    <div className="lead" onChange={(e) => {this.renderQuestion.bind(this)}}>
                         <p>
                             {question ? question.content : ''}
                         </p>

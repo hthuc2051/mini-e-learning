@@ -11,31 +11,48 @@ export default async function callApi(endpoint, method = "GET", body, callKey) {
     //   } else if (callKey === 'LOGIN') {
     //     headers = { 'Content-Type': 'application/json' }
     //   }
-      let headers = {}
-    if (callKey === Constants.LOGIN ||callKey === Constants.REGISTER) {
-         headers = { 'Content-Type': 'application/json',
-         'Access-Control-Allow-Origin':'*',
-        'Access-Control-Allow-Methods':'DELETE, POST, GET, OPTIONS',
-    'Access-Control-Allow-Headers':'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With' };
-    }else if(callKey == Constants.DASHBOARD){
+    let headers = {};
+    let result = null;
+    if (callKey === Constants.LOGIN || callKey === Constants.REGISTER || callKey == Constants.SAVE_LESSON) {
         headers = {
-        'Access-Control-Allow-Origin':'*',
-       'Access-Control-Allow-Methods':'DELETE, POST, GET, OPTIONS',
-   'Access-Control-Allow-Headers':'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With' };
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
+        };
+        try {
+            result = await axios({
+                method: method,
+                url: `${Config.API_URL}/${endpoint}`,
+                data: body,
+                headers: headers
+            })
+        } catch (err) {
+            result = err.response;
+        }
+    }else if( callKey == Constants.DASHBOARD || callKey == Constants.QUESION){
+        headers = {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
+        };
+
+        try {
+            result = await axios({
+                method: method,
+                url: `${Config.API_URL}/${endpoint}/${body}`,
+                data:body,
+                headers: headers
+            })
+        } catch (err) {
+            result = err.response;
+        }
+    }else{
+        
     }
 
-    let result = null;
-    console.log(endpoint);
-    console.log(Config.API_URL);
-    try {
-        result = await axios({
-            method: method,
-            url: `${Config.API_URL}/${endpoint}`,
-            data: body,
-            headers: headers
-        })
-    } catch (err) {
-        result = err.response;
-    }
+
+
+
     return result;
 }
