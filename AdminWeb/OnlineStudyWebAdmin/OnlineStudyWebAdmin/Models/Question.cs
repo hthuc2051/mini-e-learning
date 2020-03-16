@@ -24,6 +24,7 @@ namespace OnlineStudyWebAdmin.Models
         public int id { get; set; }
         public string question1 { get; set; }
         public string image_src { get; set; }
+        public Nullable<bool> active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Question_Answer> Question_Answer { get; set; }

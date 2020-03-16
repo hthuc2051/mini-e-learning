@@ -7,6 +7,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="answer1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Question_Answer" Relationship="Self.FK_Question_Answer_Answer" FromRole="Answer" ToRole="Question_Answer" />
+    <Property Name="active" Type="Boolean" />
   </EntityType>
   <EntityType Name="Question">
     <Key>
@@ -17,6 +18,7 @@
     <Property Name="image_src" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Question_Answer" Relationship="Self.FK_Question_Answer_Question" FromRole="Question" ToRole="Question_Answer" />
     <NavigationProperty Name="Question_Lesson" Relationship="Self.FK_Question_Quiz_Question" FromRole="Question" ToRole="Question_Lesson" />
+    <Property Name="active" Type="Boolean" />
   </EntityType>
   <EntityType Name="Question_Answer">
     <Key>

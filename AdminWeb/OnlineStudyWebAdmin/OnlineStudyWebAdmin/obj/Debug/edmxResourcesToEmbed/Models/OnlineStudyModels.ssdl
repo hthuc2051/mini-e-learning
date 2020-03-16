@@ -6,6 +6,7 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="answer" Type="nvarchar(max)" />
+    <Property Name="active" Type="bit" />
   </EntityType>
   <EntityType Name="Question">
     <Key>
@@ -14,6 +15,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="question" Type="nvarchar(max)" />
     <Property Name="image_src" Type="nvarchar" MaxLength="500" />
+    <Property Name="active" Type="bit" />
   </EntityType>
   <EntityType Name="Question_Answer">
     <Key>

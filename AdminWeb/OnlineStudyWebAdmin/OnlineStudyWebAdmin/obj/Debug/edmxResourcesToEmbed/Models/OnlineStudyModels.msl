@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Answers">
       <EntityTypeMapping TypeName="dbLearningOnlineSystemModel.Answer">
         <MappingFragment StoreEntitySet="Answer">
+          <ScalarProperty Name="active" ColumnName="active" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="answer1" ColumnName="answer" />
         </MappingFragment>
@@ -12,6 +13,7 @@
     <EntitySetMapping Name="Questions">
       <EntityTypeMapping TypeName="dbLearningOnlineSystemModel.Question">
         <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="active" ColumnName="active" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="question1" ColumnName="question" />
           <ScalarProperty Name="image_src" ColumnName="image_src" />

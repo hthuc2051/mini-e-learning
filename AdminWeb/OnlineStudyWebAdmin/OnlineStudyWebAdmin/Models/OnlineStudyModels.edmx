@@ -4,13 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbLearningOnlineSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbLearningOnlineSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="answer" Type="nvarchar(max)" />
+          <Property Name="active" Type="bit" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -19,6 +20,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="question" Type="nvarchar(max)" />
           <Property Name="image_src" Type="nvarchar" MaxLength="500" />
+          <Property Name="active" Type="bit" />
         </EntityType>
         <EntityType Name="Question_Answer">
           <Key>
@@ -234,8 +236,7 @@
             <End Role="User_Lesson_Course" EntitySet="User_Lesson_Course" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbLearningOnlineSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -246,6 +247,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="answer1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Question_Answer" Relationship="Self.FK_Question_Answer_Answer" FromRole="Answer" ToRole="Question_Answer" />
+          <Property Name="active" Type="Boolean" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -256,6 +258,7 @@
           <Property Name="image_src" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Question_Answer" Relationship="Self.FK_Question_Answer_Question" FromRole="Question" ToRole="Question_Answer" />
           <NavigationProperty Name="Question_Lesson" Relationship="Self.FK_Question_Quiz_Question" FromRole="Question" ToRole="Question_Lesson" />
+          <Property Name="active" Type="Boolean" />
         </EntityType>
         <EntityType Name="Question_Answer">
           <Key>
@@ -493,6 +496,7 @@
           <EntitySetMapping Name="Answers">
             <EntityTypeMapping TypeName="dbLearningOnlineSystemModel.Answer">
               <MappingFragment StoreEntitySet="Answer">
+                <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="answer1" ColumnName="answer" />
               </MappingFragment>
@@ -501,6 +505,7 @@
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="dbLearningOnlineSystemModel.Question">
               <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="question1" ColumnName="question" />
                 <ScalarProperty Name="image_src" ColumnName="image_src" />

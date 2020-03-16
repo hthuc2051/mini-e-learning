@@ -128,8 +128,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AnswersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\tblCoursController.cs" />
+    <Compile Include="Controllers\tblLessonsController.cs" />
     <Compile Include="Controllers\tblUsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -272,6 +275,21 @@
     <Content Include="Views\tblCours\Details.cshtml" />
     <Content Include="Views\tblCours\Edit.cshtml" />
     <Content Include="Views\tblCours\Index.cshtml" />
+    <Content Include="Views\tblLessons\Create.cshtml" />
+    <Content Include="Views\tblLessons\Delete.cshtml" />
+    <Content Include="Views\tblLessons\Details.cshtml" />
+    <Content Include="Views\tblLessons\Edit.cshtml" />
+    <Content Include="Views\tblLessons\Index.cshtml" />
+    <Content Include="Views\Questions\Create.cshtml" />
+    <Content Include="Views\Questions\Delete.cshtml" />
+    <Content Include="Views\Questions\Details.cshtml" />
+    <Content Include="Views\Questions\Edit.cshtml" />
+    <Content Include="Views\Questions\Index.cshtml" />
+    <Content Include="Views\Answers\Create.cshtml" />
+    <Content Include="Views\Answers\Delete.cshtml" />
+    <Content Include="Views\Answers\Details.cshtml" />
+    <Content Include="Views\Answers\Edit.cshtml" />
+    <Content Include="Views\Answers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

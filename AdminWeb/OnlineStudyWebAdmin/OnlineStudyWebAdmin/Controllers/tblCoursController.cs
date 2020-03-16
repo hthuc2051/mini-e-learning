@@ -17,7 +17,7 @@ namespace OnlineStudyWebAdmin.Controllers
         // GET: tblCours
         public ActionResult Index()
         {
-            return View(db.tblCourses.ToList());
+            return View(db.tblCourses.ToList().Where(t => t.active == true));
         }
 
         // GET: tblCours/Details/5
@@ -110,7 +110,8 @@ namespace OnlineStudyWebAdmin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             tblCours tblCours = db.tblCourses.Find(id);
-            db.tblCourses.Remove(tblCours);
+            tblCours.active = false;
+            db.Entry(tblCours).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
