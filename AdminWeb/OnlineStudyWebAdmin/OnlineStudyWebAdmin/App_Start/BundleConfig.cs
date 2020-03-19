@@ -28,6 +28,7 @@ namespace OnlineStudyWebAdmin
 
             bundles.Add(new StyleBundle("~/admin/css").Include("~/admin/vendor/bootstrap/css/bootstrap.min.css", "~/admin/css/simple-sidebar.css"));
             bundles.Add(new ScriptBundle("~/admin/js").Include("~/admin/vendor/jquery/jquery.min.js", "~/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"));
+            bundles.Add(new ScriptBundle("~/login").Include("~/admin/css/login.css"));
         }
     }
 }

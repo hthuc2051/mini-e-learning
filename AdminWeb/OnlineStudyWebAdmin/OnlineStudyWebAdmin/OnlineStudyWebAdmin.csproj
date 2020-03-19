@@ -140,6 +140,7 @@
     <Compile Include="Models\Answer.cs">
       <DependentUpon>OnlineStudyModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AnswerDTO.cs" />
     <Compile Include="Models\OnlineStudyModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -185,6 +186,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\css\login.css" />
     <Content Include="admin\css\simple-sidebar.css" />
     <Content Include="admin\vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="admin\vendor\bootstrap\css\bootstrap-grid.min.css" />
@@ -239,6 +241,9 @@
     <Content Include="admin\vendor\bootstrap\js\bootstrap.min.js.map" />
     <Content Include="admin\vendor\jquery\jquery.min.map" />
     <Content Include="admin\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -290,6 +295,7 @@
     <Content Include="Views\Answers\Details.cshtml" />
     <Content Include="Views\Answers\Edit.cshtml" />
     <Content Include="Views\Answers\Index.cshtml" />
+    <Content Include="Views\tblUsers\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

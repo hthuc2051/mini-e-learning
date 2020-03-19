@@ -41,15 +41,21 @@ public class HomePageServiceImpl implements HomePageService {
         List<Course> course= courseRepository.findAll();
         List<CourseDTO> listCourse = new ArrayList<>();
         for (Course item: course) {
-            List<CourseLesson> courseLessonList = item.getCourseLesson();
-            List<LessonDTO> listLesson = new ArrayList<>();
-            for (CourseLesson courseLesson: courseLessonList) {
-                Lesson lesson = courseLesson.getLesson();
-                listLesson.add(MapperManager.map(lesson,LessonDTO.class));
+            if(item.isActive() == true){
+                List<CourseLesson> courseLessonList = item.getCourseLesson();
+                List<LessonDTO> listLesson = new ArrayList<>();
+                for (CourseLesson courseLesson: courseLessonList) {
+                    Lesson lesson = courseLesson.getLesson();
+                    if(lesson.isActive() == true) {
+                        listLesson.add(MapperManager.map(lesson, LessonDTO.class));
+                    }
+                }
+                CourseDTO courseDTO =  MapperManager.map(item, CourseDTO.class);
+                courseDTO.setCourseLesson(listLesson);
+                listCourse.add(courseDTO);
+            }else {
+              // not add to course
             }
-           CourseDTO courseDTO =  MapperManager.map(item, CourseDTO.class);
-            courseDTO.setCourseLesson(listLesson);
-            listCourse.add(courseDTO);
         }
         Optional<User> user = userRepository.findById(userId);
         if(user.isPresent()){

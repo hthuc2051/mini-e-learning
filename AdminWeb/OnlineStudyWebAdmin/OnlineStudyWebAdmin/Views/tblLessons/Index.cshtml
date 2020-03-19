@@ -8,7 +8,17 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (ViewBag.CourseId != null)
+    {
+        <button value="Save" class="btn btn-success">
+            <a style="color: white;text-decoration: none" href="@Url.Action("AddLesson", "tblLessons",new { courseId = ViewBag.CourseId})">New Lessons</a>
+        </button>
+    }
+    else
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
+
 </p>
 <table class="table">
     <tr>
@@ -21,29 +31,47 @@
         <th>
             @Html.DisplayNameFor(model => model.video_link)
         </th>
-
+        @if (ViewBag.CourseId != null)
+        {
+            <th></th>
+        }
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                <a href="@Url.Action("GetListQuestion","Questions",new { lessonId = item.id})"> @Html.DisplayFor(modelItem => item.name)</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.video_link)
-            </td>
-
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
-            </td>
-        </tr>
+<tr>
+    <td>
+        <a href="@Url.Action("GetListQuestion","Questions",new { lessonId = item.id})"> @Html.DisplayFor(modelItem => item.name)</a>
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.video_link)
+    </td>
+    @if (ViewBag.CourseId != null && ViewBag.IsAddLesson == null)
+    {
+        <td style="max-width: 300px;">
+            <button value="Save" class="btn btn-danger">
+                <a style="color: white;text-decoration: none" href="@Url.Action("RemoveLesson","tblCours",new { lessonId = item.id, courseId = ViewBag.CourseId})">REMOVE</a>
+            </button>
+        </td>
+    }
+    else if(ViewBag.CourseId != null && ViewBag.IsAddLesson != null)
+    {
+        <td style="max-width: 300px;">
+            <button value="Save" class="btn btn-primary">
+                <a style="color: white;text-decoration: none" href="@Url.Action("AddLesson","tblCours",new { lessonId = item.id, courseId = ViewBag.CourseId})">ADD TO COURSE</a>
+            </button>
+        </td>
+    }
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+    </td>
+</tr>
     }
 
 </table>

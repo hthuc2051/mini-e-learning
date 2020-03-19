@@ -1,34 +1,84 @@
-﻿@model IEnumerable<OnlineStudyWebAdmin.Models.Answer>
+﻿@model IEnumerable<OnlineStudyWebAdmin.Models.AnswerDTO>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Menu_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Question</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
+    @if (ViewBag.QuestionId != null)
+    {
+        <button value="Save" class="btn btn-success">
+            <a style="color: white;text-decoration: none" href="@Url.Action("AddAnswer", "Answers",new { questionId = ViewBag.QuestionId})">New Answers</a>
+        </button>
+    }
+
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.answer1)
+            @Html.DisplayNameFor(model => model.answer.answer1)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isCorrect)
+        </th>
+        @if (ViewBag.LessonId != null)
+        {
+            <th></th>
+        }
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.answer1)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            @using (Html.BeginForm("AddAnswer", "Questions", FormMethod.Post))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.answer.answer1)
+                </td>
+                <td>
+                    @if (ViewBag.IsAddAnswer == null)
+                    {
+                        @Html.DisplayFor(modelItem => item.isCorrect)
+                    }
+                    else
+                    {
+                        <select name="isCorrect">
+                            <option selected>False</option>
+                            <option >True</option>
+                        </select>
+                    }
+
+                </td>
+                if (ViewBag.QuestionId != null && ViewBag.IsAddAnswer == null)
+                {
+                    <td>
+                        <button type="button" value="Save" class="btn btn-danger">
+                            <a style="color: white;text-decoration: none" href="@Url.Action("RemoveAnswer","Questions",new { answerId = item.answer.id, questionId = ViewBag.QuestionId})">REMOVE</a>
+                        </button>
+                    </td>
+                }
+                else if (ViewBag.QuestionId != null && ViewBag.IsAddAnswer != null)
+                {
+                    <td>
+                        <input type="hidden" name="answerId" value="@item.answer.id"/>
+                        <input type="hidden" name="questionId" value="@ViewBag.QuestionId"/>
+                        <button type="submit" value="Save" class="btn btn-primary">
+                            ADD TO QUESTION
+                        </button>
+                    </td>
+                }
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.answer.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.answer.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.answer.id })
+                </td>
+            }
+        </tr>
+    }
 
 </table>

@@ -14,6 +14,63 @@ namespace OnlineStudyWebAdmin.Controllers
     {
         private dbLearningOnlineSystemEntities db = new dbLearningOnlineSystemEntities();
 
+        public ActionResult GetAnswers(int questionId)
+        {
+            var answers = from q in db.Questions
+                            join qa in db.Question_Answer on q.id equals qa.questionId
+                            join a in db.Answers on qa.answerId equals a.id
+                            where q.id == questionId && a.active == true 
+                            select new AnswerDTO { answer = a, isCorrect = qa.isCorrect};
+            //List<Answer> listAnswers = new List<Answer>();
+            //foreach (var item in answers)
+            //{
+            //    Answer answer = new Answer();
+            //    answer.id = item.id;
+            //    answer.answer1 = item.answer1;
+            //    answer.active = item.active;
+            //    listAnswers.Add(answer);
+            //}
+            Question question = db.Questions.Find(questionId);
+            ViewBag.QuestionId = questionId;
+            ViewBag.Question = question.question1;
+            Session.Add("QUESTION", questionId);
+            return View("Index",answers.ToList());
+        }
+
+        public ActionResult AddAnswer(int questionId)
+        {
+            var answers = from q in db.Questions
+                          join qa in db.Question_Answer on q.id equals qa.questionId
+                          join a in db.Answers on qa.answerId equals a.id
+                          where q.id == questionId
+                          select a;
+            Question question = db.Questions.Find(questionId);
+            IEnumerable<Answer> answerList = from l in db.Answers where l.active == true select l;
+            List<AnswerDTO> answerAvailable = new List<AnswerDTO>();
+            foreach (var item in answerList.ToList())
+            {
+                int id = item.id;
+                bool isExist = false;
+                foreach (var items in answers.ToList())
+                {
+                    if (items.id == id)
+                    {
+                        isExist = true;
+                    }
+                }
+                if (!isExist)
+                {
+                    AnswerDTO dto = new AnswerDTO();
+                    dto.answer = item;
+                    dto.isCorrect = false;
+                    answerAvailable.Add(dto);
+                }
+            }
+            ViewBag.QuestionId = questionId;
+            ViewBag.Question = question.question1;
+            ViewBag.IsAddAnswer = true;
+            return View("Index", answerAvailable);
+        }
         // GET: Answers
         public ActionResult Index()
         {
@@ -50,9 +107,11 @@ namespace OnlineStudyWebAdmin.Controllers
         {
             if (ModelState.IsValid)
             {
+                answer.active = true;
                 db.Answers.Add(answer);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                string questionId = Session["QUESTION"].ToString();
+                return RedirectToAction("GetAnswers",new { questionId = questionId});
             }
 
             return View(answer);
@@ -82,9 +141,11 @@ namespace OnlineStudyWebAdmin.Controllers
         {
             if (ModelState.IsValid)
             {
+                answer.active = true;
                 db.Entry(answer).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                string questionId = Session["QUESTION"].ToString();
+                return RedirectToAction("GetAnswers", new { questionId = questionId });
             }
             return View(answer);
         }
@@ -113,7 +174,8 @@ namespace OnlineStudyWebAdmin.Controllers
             answer.active = false;
             db.Entry(answer).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            string questionId = Session["QUESTION"].ToString();
+            return RedirectToAction("GetAnswers", new { questionId = questionId });
         }
 
         protected override void Dispose(bool disposing)

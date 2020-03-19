@@ -16,7 +16,7 @@ namespace OnlineStudyWebAdmin
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "tblUsers", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "tblUsers", action = "Login", id = UrlParameter.Optional }
             );
         }
     }

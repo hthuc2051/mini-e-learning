@@ -1,0 +1,52 @@
+﻿.login,
+.image {
+    min-height: 100vh;
+}
+
+.bg-image {
+    background-image: url('https://wallpaperaccess.com/full/1426870.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.login-heading {
+    font-weight: 300;
+    color: black;
+}
+
+.btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+    width: 371px;
+    margin-top: 10px;
+}
+
+.form-label-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.inputBox {
+    padding-left: 30px;
+    display: inline;
+    visibility: visible;
+    width: 371px;
+    height: 50px;
+    border: 1px solid lightgray;
+    border-radius: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.registerLink {
+    color: blue;
+}
+
+.container-fluid {
+    background-color: white;
+}
+
+.error_message {
+    color: red;
+}

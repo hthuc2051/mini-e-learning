@@ -20,6 +20,41 @@ namespace OnlineStudyWebAdmin.Controllers
             return View(db.tblUsers.ToList().Where(t => t.active == true));
         }
 
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(string username, string password)
+        {
+            var user = from t in db.tblUsers where t.username == username && t.password == password select t;
+            if (user.Any())
+            {
+                Session.Add("USERNAME", username);
+                return RedirectToAction("Index", "tblCours");
+            }
+            else
+            {
+                ViewBag.ERROR = "Wrong Email or password";
+                return View();
+            }
+
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return View("Login");
+        }
+
+        public ActionResult ViewProfile()
+        {
+            var name = Session["USERNAME"];
+            IEnumerable<tblUser> profile = from t in db.tblUsers where t.username == name select t;
+            return View("Edit", profile.ToList().FirstOrDefault());
+        }
+
         // GET: tblUsers/Details/5
         public ActionResult Details(int? id)
         {

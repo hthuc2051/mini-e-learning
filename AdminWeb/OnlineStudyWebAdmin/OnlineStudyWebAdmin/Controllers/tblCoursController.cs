@@ -124,5 +124,34 @@ namespace OnlineStudyWebAdmin.Controllers
             }
             base.Dispose(disposing);
         }
+        
+        public ActionResult RemoveLesson( int lessonId, int CourseId)
+        {
+           IEnumerable<tblCourses_Lessons> courses_Lessons = db.tblCourses_Lessons.ToList().Where(t => t.lesson_id == lessonId && t.course_id == CourseId);
+           foreach(tblCourses_Lessons item in courses_Lessons)
+            {
+                foreach (User_Lesson_Course items in item.User_Lesson_Course.ToList())
+                {
+                    db.User_Lesson_Course.Remove(items);
+                    db.SaveChanges();
+                }
+                db.tblCourses_Lessons.Remove(item);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("GetLessonList", "tblLessons", new { courseId = CourseId });
+        }
+
+        public ActionResult AddLesson(int lessonId, int courseId)
+        {
+            tblCourses_Lessons courses_Lessons = new tblCourses_Lessons();
+            courses_Lessons.lesson_id = lessonId;
+            courses_Lessons.course_id = courseId;
+            db.tblCourses_Lessons.Add(courses_Lessons);
+            db.SaveChanges();
+            return RedirectToAction("GetLessonList", "tblLessons", new { courseId = courseId });
+        }
+
+
     }
 }

@@ -143,3 +143,8 @@ body {
     border-right: 0px;
     text-align: left;
 }
+
+.remove_btn {
+    color: white !important;
+    text-decoration: none;
+}
