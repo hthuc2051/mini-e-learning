@@ -14,7 +14,7 @@ class AnswerPageContainer extends Component {
         this.state = {
             isLoading: true,
             lessonId: 0,
-            courseId:0,
+            courseId: 0,
             statusCode: 200,
             questions: [],
             messages: '',
@@ -25,9 +25,11 @@ class AnswerPageContainer extends Component {
             answerMsg: '',
             hintClass: null,
             lessonName: '',
+            lesson_video_link: '',
             lessonIndex: 0,
             lessonNumber: 0,
-            userId:0,
+            userId: 0,
+            isShowVideo: true,
         };
     }
 
@@ -42,7 +44,7 @@ class AnswerPageContainer extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
+        let video_link= '';
         let { lesson } = nextProps;
         if (lesson && lesson.questions) {
             let course = nextProps.course;
@@ -53,23 +55,32 @@ class AnswerPageContainer extends Component {
                     let lessonID = lessons.id + "";
                     if (lessonID === this.state.lessonId) {
                         this.setState({
-                            lessonIndex :j + 1,
+                            lessonIndex: j + 1,
                             lessonNumber: lessonsList.length,
                             lessonName: lessons.name,
                             courseId: course[i].id,
                         });
+                        video_link = lessons.video_link;
                     }
                 }
 
-
             }
+            let video = {
+                content: video_link,
+                isVideo: true,
+                answers:[{
+                    id: "VIDEO", content: "Next", answerMsg: "NEXT"
+                }]
+            };
+            let newQuestions = [video].concat(nextProps.lesson.questions)
             this.setState({
                 isLoading: nextProps.isLoading,
                 statusCode: nextProps.statusCode,
-                questions: nextProps.lesson.questions,
+                questions: newQuestions,
                 latestIndex: nextProps.lesson.latestIndex,
                 userId: nextProps.userId,
             })
+            console.log(nextProps.lesson.questions);
         }
     }
 
@@ -77,10 +88,12 @@ class AnswerPageContainer extends Component {
         // let {curQuestion,latestIndex} = this.state;
         this.setState({
             curQuestion: i,
+            selectedId:-1,
         })
         if (this.state.curQuestion > this.state.latestIndex) {
             this.setState({
                 latestIndex: this.state.curQuestion,
+                selectedId:-1,
             });
         }
     }
@@ -97,20 +110,26 @@ class AnswerPageContainer extends Component {
         let question = questions[curQuestion];
         let hintClass = '';
         if (question) {
-            let answer = question.answers.find(answer => answer.id === id);
-            if (question.correctId === id) {
+            if(id === "VIDEO"){
+                 this.onClickNextQuestion();
+            }else{
+                let answer = question.answers.find(answer => answer.id === id);
+                if (question.correctId === id) {
+                    this.setState({
+                        isCorrect: true,
+                    });
+                    hintClass = "show hint-true"
+                } else {
+                    hintClass = "show hint-false"
+                }
                 this.setState({
-                    isCorrect: true,
+                    isShowHint: true,
+                    answerMsg: answer ? answer.answerMsg : '',
+                    hintClass: hintClass,
+                    selectedId: id,
                 });
-                hintClass = "show hint-true"
-            } else {
-                hintClass = "show hint-false"
             }
-            this.setState({
-                isShowHint: true,
-                answerMsg: answer ? answer.answerMsg : '',
-                hintClass: hintClass,
-            });
+          
         }
 
 
@@ -124,7 +143,7 @@ class AnswerPageContainer extends Component {
             isCorrect: false,
             isShowHint: false,
             hintClass: null,
-
+            selectedId :-1,
         });
 
     }
@@ -136,6 +155,7 @@ class AnswerPageContainer extends Component {
                 isCorrect: false,
                 isShowHint: false,
                 hintClass: null,
+                selectedId :-1,
             });
         }
     }
@@ -148,26 +168,26 @@ class AnswerPageContainer extends Component {
     }
 
     renderTitle() {
-        let {lessonName,lessonNumber,lessonIndex} = this.state; 
+        let { lessonName, lessonNumber, lessonIndex } = this.state;
         return (
             <div className="nav-title col-2 col-sm-3">
                 <div className="title">
                     <h2>{lessonName}</h2>
-        <h3>Lesson {lessonIndex} of {lessonNumber}</h3>
+                    <h3>Lesson {lessonIndex} of {lessonNumber}</h3>
                 </div>
                 <img width={28} src="/images/cancel.png" className="but-ansPage-close " alt="Close" />
             </div>
         );
     }
 
-    saveAndExit(){
+    saveAndExit() {
         console.log(this.state);
-        let {courseId,lessonId,userId,curQuestion,questions} =this.state;
+        let { courseId, lessonId, userId, curQuestion, questions } = this.state;
         let status = Constants.LEARNING;
-        if(curQuestion === questions.length){
+        if (curQuestion === questions.length) {
             status = Constants.LEARNED;
         }
-        this.props.saveLearningStatus(userId,courseId,lessonId,status);
+        this.props.saveLearningStatus(userId, courseId, lessonId, status);
     }
 
     render() {
@@ -187,7 +207,7 @@ class AnswerPageContainer extends Component {
                     </button>
                 </div>
                 <nav className="navbar d-flex justify-content-between">
-                    <div className="nav-back d-flex align-items-center col-2 col-sm-3" onClick= {(e) => {e.preventDefault();this.saveAndExit()}}>
+                    <div className="nav-back d-flex align-items-center col-2 col-sm-3" onClick={(e) => { e.preventDefault(); this.saveAndExit() }}>
                         <img className="icon-back" src="/images/left-arrow.png" ></img>
                         <span className="nav-caption" >SAVE AND EXIT</span>
                     </div>
@@ -219,13 +239,14 @@ class AnswerPageContainer extends Component {
     }
 }
 const mapStateToProps = state => {
+    console.log(state);
     return {
         statusCode: state.answerPage.statusCode,
         isLoading: state.answerPage.isLoading,
         messages: state.answerPage.messages,
         lesson: state.answerPage.lesson,
         course: state.dashBoardPage.course,
-       userId: state.loginPage.user.id,
+        userId: state.loginPage.user.id,
     }
 
 }
@@ -237,8 +258,8 @@ const mapDispatchToProps = (dispatch, props) => {
         fetchQuestions: (lessonId) => {
             fetchQuestionsOfLesson(lessonId, dispatch);
         },
-        saveLearningStatus: (userId,courseId,lessonID,status) => {
-            saveLearning(userId,courseId,lessonID,status);
+        saveLearningStatus: (userId, courseId, lessonID, status) => {
+            saveLearning(userId, courseId, lessonID, status);
         }
     }
 }

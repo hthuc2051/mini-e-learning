@@ -58,8 +58,8 @@ class CoursePageContainer extends Component {
         let { currentCourse } = this.state;
         console.log(this.state);
         return (
+            
             <div className="article">
-
                 <div className="box">
                     <div>
                         <div className="course-box">

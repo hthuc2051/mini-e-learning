@@ -6,6 +6,16 @@
     width: 100%;
     height: auto;
 }
+.sign-out{
+    cursor: pointer;
+}
+.icon-top {
+    width: 20px;
+}
+.top-name{
+    cursor: pointer;
+    margin-left: 10px;
+}
 
 .topbox {
     width: 100%;
@@ -269,6 +279,9 @@ body {
         left: 43px;
         top: 8px;
     }
+
+  
+
     .topbox-contain-title-smallicon {
         width: 100% !important;
         height: auto;

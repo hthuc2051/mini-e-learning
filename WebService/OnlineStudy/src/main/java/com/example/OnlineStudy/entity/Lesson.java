@@ -21,6 +21,8 @@ public class Lesson {
     private String name;
     @Column(name = "description", nullable = true)
     private String description;
+    @Column(name = "video_link", nullable = true)
+    private String video_link;
     @Column(name = "active", nullable = true)
     private boolean active;
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL)

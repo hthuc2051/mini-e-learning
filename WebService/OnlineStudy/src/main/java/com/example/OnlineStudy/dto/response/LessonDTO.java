@@ -12,5 +12,6 @@ public class LessonDTO {
     private Integer id;
     private String name;
     private String description;
+    private String video_link;
     private String status;
 }
